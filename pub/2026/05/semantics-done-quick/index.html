@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Semantics Done Quick — Mike Dodds</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5d5a52;
+    --rule: #d8d4cc;
+    --accent: #7a3a14;
+    --bg: #fbfaf5;
+  }
+
+  html { font-size: 17px; }
+
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
+                 Charter, "Bitstream Charter", Cambria, Georgia, serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    max-width: 38rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem 6rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    hyphens: auto;
+  }
+
+  header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0 0 1.8rem;
+    max-width: 32rem;
+  }
+
+  .byline {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+
+  .bio {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0;
+  }
+
+  .bio a { color: var(--ink); }
+
+  h2 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 3.5rem 0 1rem;
+  }
+
+  h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.4rem;
+  }
+
+  p { margin: 0 0 1rem; }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+  }
+
+  a:hover { text-decoration-thickness: 1.2px; }
+
+  ul, ol {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.4rem;
+  }
+
+  li { margin-bottom: 0.5rem; }
+
+  code {
+    font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.85em;
+    background: rgba(0,0,0,0.04);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
+  }
+
+  .milestone {
+    margin: 1.4rem 0 1.6rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--rule);
+  }
+
+  .milestone .date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+  }
+
+  .milestone h3 {
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .milestone .deliverables {
+    font-size: 0.93rem;
+    color: var(--muted);
+  }
+
+  .milestone .deliverables strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    body { margin: 2rem auto; padding: 0 1.2rem 4rem; }
+    h1 { font-size: 1.8rem; }
+    h2 { margin-top: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Semantics Done Quick</h1>
+  <p class="subtitle">Lifting trusted formal semantics from real-world programming languages, with AI agents doing most of the work.</p>
+  <p class="byline">A proposal for the <a href="https://apartresearch.com/fellowships/the-secure-program-synthesis-fellowship">Apart &times; Atlas Secure Program Synthesis Fellowship</a><br>
+  Mike Dodds (<a href="https://mikedodds.org">mikedodds.org</a>) &middot; Galois, Inc. / Oath Technologies &middot; May 2026</p>
+</header>
+
+<section>
+  <h2>Target output</h2>
+  <p>We will use AI agents to lift trusted formal semantics for Pkl (warm-up) and Zig comptime (main). Target venue: PLDI 2027.</p>
+</section>
+
+<section>
+  <h2>Summary</h2>
+  <p>Before we can formally verify real-world systems, we need semantic models of real languages. We have such models for C, Rust, and a few others, but there is a long tail of unformalised languages, and people keep inventing new ones. We want to build semantic models fast, with AI doing most of the work, and trust the results in high-stakes settings.</p>
+  <p>Building such models has historically taken expert teams years, in some cases more than a decade (&lambda;JS, Cerberus, others). This is much too slow. We want to compress it to days, and trust the results nonetheless.</p>
+  <p>This project will use AI agents to build Lean 4 semantics for Apple's Pkl (warm-up) and a fragment of Zig's <code>comptime</code> evaluator (main work). We ask three things: how well can AI agents build such a model, and at what cost? How rigorously can we validate the result for use in high-stakes settings? And can we use the model to build downstream PL tools (verifiers, compilers, synthesisers)? Outputs: a Lean toolkit, semantics for both languages with evidence of fidelity, and a worked tool built on top.</p>
+</section>
+
+<section>
+  <h2>High-level background</h2>
+  <p>Three lines of work are foundational for this project.</p>
+  <p>There is a long and noble tradition of building tested operational semantics for messy real-world languages: &lambda;JS for JavaScript (Guha, Saftoiu, Krishnamurthi, ECOOP 2010), 'Python: The Full Monty' (Politz et al., OOPSLA 2013, which reports ~72 person-months), KJS in the K framework (Park, Stefanescu, Ro&#537;u, PLDI 2015), and Cerberus for C (Memarian, Sewell, et al., PLDI 2016 onwards). Each of these took a dedicated expert team years, in some cases more than a decade. This is much too slow.</p>
+  <p>Krishnamurthi, Lerner, and Elberty's 'The Next 700 Semantics: A Research Challenge' (SNAPL 2019) names automated semantics elicitation as an explicit open problem and documents four pre-LLM attempts at automation, all unsuccessful. They close with an explicit open question: can a system exploit prose documentation to make the problem tractable?</p>
+  <p>Recent capability results suggest the answer might be yes. Epoch and METR's MirrorCode benchmark (April 2026) shows frontier agents reimplementing multi-thousand-line programs from black-box behaviour, including Apple's Pkl. Basis.ai's April 2026 experiment showed multi-agent Claude Code generating a monolithic Lean 4 operational model for JavaScript, validated against Test262. Nobody has yet built a trustworthy and principled model, or used it as a basis for other formal tools.</p>
+</section>
+
+<section>
+  <h2>Detailed technical background</h2>
+  <p>Two works directly drive the project. Krishnamurthi, Lerner, and Elberty's 'The Next 700 Semantics' (SNAPL 2019) supplies the architecture, and Guha, Saftoiu, and Krishnamurthi's &lambda;JS (ECOOP 2010) supplies the worked example.</p>
+  <p>The architecture is straightforward. A surface language P is the messy real-world artefact (e.g. Zig, JavaScript, Pkl). A core language &lambda;P is a small lambda-calculus-style essence, typically 5 to 20 constructs. A desugaring function maps surface programs into core programs. The core interpreter is easy to write because &lambda;P is small. Validation runs the surface program through the real reference implementation, runs the core program through the &lambda;P interpreter, and checks the outputs match. The loop iterates over a corpus until they always do.</p>
+  <p>This decomposition matters because it splits the task into two very unequal halves. &lambda;P design is the small, taste-driven, insight-producing half, which the 2019 paper argues a human should do. Desugaring synthesis is the large, structural, search-heavy half, which the 2019 paper argues a machine should do. The 2019 attempts at the machine half all failed; the recent capability results suggest current frontier multi-agent LLM systems can succeed at this kind of structured code-generation task.</p>
+  <p>&lambda;JS is the canonical worked example of the architecture. It is a 9-construct core into which surface JavaScript desugars, and the 2012 follow-up paper (Politz et al., DLS 2012) tested the desugaring against a substantial corpus of real JavaScript programs. &lambda;JS-style cores are the model for what a good lifted artefact looks like: small, readable, analysable, with a desugaring function that is a tree homomorphism almost everywhere.</p>
+  <p>Our project departs from the 2019 framing in two ways. First, we use AI to accelerate the entire pipeline, &lambda;P design, desugaring, the small-step semantics, not just the desugaring synthesis the 2019 paper tried to automate. Human expert attention is reserved for the hard design judgements where AI is unreliable. Second, we use Lean 4 rather than Coq/Rocq, because the Lean AI tooling is strong (Mathlib coverage, plus automated theorem provers for Lean such as Kimina, Goedel-Prover, and DeepSeek-Prover).</p>
+  <p>We also treat the resulting Lean semantics as a foundation for further work, not as an end in itself. As stretch goals, we have two candidates. The first is a verifier built over the semantics, using Lean's existing proof infrastructure to prove properties of specific programs by reasoning in &lambda;P. The second is a translation-validation-style proof to an IR such as AIR (Zig's typed intermediate representation after <code>comptime</code> evaluation), which would require also formalising AIR's semantics in Lean and then proving per-program agreement between the spec's &lambda;P output and the real compiler's AIR output. The 2019 framing stops at 'tests pass'; we want the semantics to be useful as well as faithful.</p>
+</section>
+
+<section>
+  <h2>Proposed methodology</h2>
+  <p>We hypothesise that with the surface/core/desugaring decomposition described above, frontier multi-agent LLMs can produce a trustworthy Lean semantics for a previously unmodelled language fragment in days to weeks, and that proof-grade validation evidence is achievable on bounded fragments of that semantics.</p>
+  <p>We will use Apple's small Pkl language (<a href="https://pkl-lang.org">pkl-lang.org</a>) as a warm up target, and then Zig (<a href="https://ziglang.org">ziglang.org</a>) as our main target. We chose Zig because it is exactly the kind of language PL formalisation has not yet caught up with. Zig sits around #39 in mainstream popularity but is growing fast, with serious commercial users (Bun, TigerBeetle, Ghostty) and hundreds of thousands of developers. Zig's <code>comptime</code> itself is a novel language feature with no existing formal treatment: it allows compile-time metaprogramming using full Zig at the type level.</p>
+  <p>In both cases, we will follow the Krishnamurthi, Lerner, and Elberty surface/core/desugaring architecture. For each language we want four Lean artefacts: (i) the surface language as an AST; (ii) a small core &lambda;P, in the &lambda;JS tradition; (iii) a desugaring function from surface to core; and (iv) a small-step semantics for &lambda;P. The semantics of the surface language is then "desugar, then evaluate in &lambda;P". We validate against the reference implementation by randomised differential testing on a fuzzed corpus of programs.</p>
+  <p>The main work will be on a fragment of Zig's <code>comptime</code> evaluator, covering basic types, control flow, function application, and simple type-level computation. Memory and allocator semantics, cross-module generics, and async are out of scope, deferred for follow-on work.</p>
+  <p>We envisage a lifting loop that works as follows:</p>
+  <ol>
+    <li>Inputs: the reference implementation and the language documentation.</li>
+    <li>The AI agent proposes an initial &lambda;P, desugaring, and small-step semantics.</li>
+    <li>A differential testing harness runs surface programs through both the real reference and the (desugar + &lambda;P) pipeline, flagging discrepancies.</li>
+    <li>The agent iterates, fixing the desugaring, growing &lambda;P, or revising the semantics. The mentor and mentees intervene on the hard design calls: where the agent is making a poor structural choice for &lambda;P, papering over a real ambiguity, or missing something the architecture ought to expose.</li>
+    <li>The loop has converged when tests pass on a fuzzed corpus (seeded from each language's reference test suite, expanded by grammar-aware fuzzing, with a held-out fraction reserved as the trust signal).</li>
+  </ol>
+  <p>For the cost claim, we will benchmark against the human-labour numbers from the literature: &lambda;JS at multiple person-years (Guha et al. 2010, Politz et al. 2012), 'Python: The Full Monty' at 72 person-months (Politz et al. 2013), KJS at multi-year effort (Park et al. 2015), Cerberus at over a decade and counting. We aim to compress this to days, measured in mentor-plus-mentee person-hours and frontier-model API spend.</p>
+  <p>Four open questions sit at the heart of the project, each something we expect the work itself to answer:</p>
+  <ol>
+    <li>How much of the four-artefact pipeline (surface AST, &lambda;P, desugaring, small-step semantics) can frontier multi-agent LLMs produce autonomously, and where do they need expert intervention? Recent results (MirrorCode, Basis.ai) suggest the structural code is in reach; the design half is the more uncertain part of the bet.</li>
+    <li>Is randomised differential testing on a fuzzed corpus sufficient to drive the loop to convergence at AI-driven scale?</li>
+    <li>Does the surface/core/desugaring architecture transfer to Zig comptime? Comptime's phase distinction and type-level computation are unusual compared to the languages the architecture has been validated on (JavaScript, Python, Java).</li>
+    <li>Is the chosen comptime fragment of Zig bounded enough to be tractable in four months, and stable enough across recent versions to be a useful target?</li>
+  </ol>
+  <p>Two stretch goals are within reach if the core lifting work goes faster than expected. The first is a verifier built over the semantics: use Lean's existing proof infrastructure to prove properties of specific Zig programs by reasoning in &lambda;Zig. A concrete demo target is a comptime-generated <code>ComptimeStringMap</code> proven correct, or a TigerBeetle-style invariant. The second is a translation-validation-style proof to an IR such as AIR. This requires also formalising the relevant fragment of AIR's semantics in Lean and then proving per-program agreement between the spec's &lambda;P output and the real compiler's AIR output. We will pick which to pursue based on team progress and interest after the core work is settled.</p>
+  <p>By the end of the fellowship, success means the toolkit is working, both Pkl and Zig comptime semantics have been lifted and validated by differential testing, and at least one stretch goal has been started on the Zig semantics.</p>
+</section>
+
+<section>
+  <h2>Preliminary experiments</h2>
+  <p>MirrorCode (Epoch and METR, April 2026) shows frontier agents reimplementing real programs from black-box behaviour, and includes Pkl among its featured targets, giving us a ready-made behavioural oracle for the warm-up. The Basis.ai work (April 2026) shows multi-agent systems can produce Lean semantics at scale.</p>
+  <p>I've been building a few similar things at <a href="https://github.com/septract">github.com/septract</a>: <code>lean-c-semantics</code> lifts Cerberus's Core IR into Lean 4, currently passing 98% on a 760-test C corpus; the <code>saw-core-lean</code> branch of <code>saw-script</code> is a SAW&rarr;Lean backend; <code>ACL2Lean</code> is an ACL2-to-Lean4 bridge; <code>claudes-cycles-lean</code> is a Lean 4 / Mathlib formalisation of a recent Knuth theorem co-built with Claude.</p>
+</section>
+
+<section>
+  <h2>Theory of impact</h2>
+  <p>AI is generating code at scale that humans cannot review. The bottleneck for formally verifying that code is no longer proof effort, which AI is rapidly making cheap, but the absence of trustworthy formal specifications for the languages, ABIs, and APIs that the code uses. Producing those specifications is currently a multi-year per-language artisanal effort.</p>
+  <p>If our toolkit reduces that cost by an order of magnitude, with the resulting artefacts still auditable, the practical effect is to bring formal verification within reach for languages and interfaces previously written off as too costly to model. The work feeds into my broader programme on scalable formal oversight at Oath Technologies. Direct beneficiaries include Zig users in safety-critical contexts (TigerBeetle, kernel modules, embedded systems), and any community shipping AI-generated code that has to be checked against an underspecified target. All artefacts are open-source.</p>
+</section>
+
+<section>
+  <h2>Risks and mitigations</h2>
+  <p>Zig is pre-1.0 and the language will move during the fellowship. We pin to a specific Zig version at project start, treat newer versions as future work, and scope the comptime fragment to features that have been stable across recent releases.</p>
+  <p>The deepest worry is the coverage of the differential oracle: behavioural validation only tests programs in the corpus, and programs outside it can diverge silently from the real compiler. We follow Krishnamurthi (2019)'s established methodology, differential testing on a fuzzed corpus, the same approach that produced credible semantics for JavaScript, Python, and Java. Using the semantics for downstream verification gives a second-order check: successful proofs on real programs are evidence the semantics is internally consistent.</p>
+  <p>The Pkl warm-up depends on MirrorCode's behavioural oracle remaining usable, and on Pkl's reference implementation (Java/Kotlin) being callable from a Lean-side differential testing harness. If either path stalls, we fall back to a smaller hand-curated Pkl test corpus and run the warm-up on that.</p>
+  <p>Spec lifting is defensive infrastructure: it helps prove programs correct against trustworthy specs. We don't see a meaningful offence/defence asymmetry.</p>
+</section>
+
+<section>
+  <h2>Capacity</h2>
+  <p>5 hours per week, sustained across the fellowship period (June through September 2026), barring unforeseen circumstances. Some travel during August 2026, accommodated through asynchronous communication; Zig design work is front-loaded into July to keep the high-judgement phase out of the travel window.</p>
+</section>
+
+<section>
+  <h2>Timeline</h2>
+
+  <div class="milestone">
+    <p class="date">Milestone 1 &middot; 31 July 2026</p>
+    <h3>Toolkit + Pkl semantics lifted; initial Zig design done</h3>
+    <p>The lifting toolkit works end-to-end. Pkl semantics (surface, &lambda;Pkl, desugaring, small-step) is lifted in Lean 4 and validated by differential testing against MirrorCode's behavioural oracle. Initial Zig design work is complete: surface AST, candidate &lambda;Zig, and an initial desugaring drafted before the August travel window.</p>
+    <p class="deliverables"><strong>Deliverables.</strong> Lean 4 library (surface/core/desugaring templates, &lambda;P reduction infrastructure, differential testing harness); AI-loop scaffolding (agent prompts and orchestration); lifted Pkl semantics with passing differential tests; initial Zig surface AST + candidate &lambda;Zig + initial desugaring; cost and convergence measurements from the warm-up.</p>
+  </div>
+
+  <div class="milestone">
+    <p class="date">Milestone 2 &middot; 31 August 2026</p>
+    <h3>Zig comptime semantics lifted and validated</h3>
+    <p>The defined Zig comptime fragment is lifted in Lean (surface, &lambda;Zig, desugaring, small-step) and validated by randomised differential testing against the real Zig compiler on a fuzzed corpus. August work is mostly the agent iterating over discrepancies the design from July generates; the mentor is available asynchronously through travel.</p>
+    <p class="deliverables"><strong>Deliverables.</strong> Lean semantics for the defined Zig comptime fragment; held-out fuzz corpus and validation results; any compiler bugs surfaced during lifting reported upstream to Zig.</p>
+  </div>
+
+  <div class="milestone">
+    <p class="date">Milestone 3 &middot; 30 September 2026</p>
+    <h3>Stretch goal started + paper draft + open-source release</h3>
+    <p>Initial work on at least one stretch goal: either an early verifier built over &lambda;Zig that proves a property of a real Zig program (a <code>ComptimeStringMap</code>, a <code>BoundedArray</code> invariant, or a TigerBeetle-style invariant), or initial steps toward a translation-validation proof to AIR (which also requires formalising the relevant AIR fragment). Paper draft prepared for PLDI 2027 (deadline mid-November 2026); toolkit, semantics, and evaluation data released publicly.</p>
+    <p class="deliverables"><strong>Deliverables.</strong> initial artefact for the chosen stretch goal; paper draft for PLDI 2027; public release of the Lean toolkit, both lifted semantics, the differential testing harness, and the evaluation data.</p>
+  </div>
+</section>
+
+<footer>
+  Mike Dodds &middot; <a href="mailto:mike@oath.tech">mike@oath.tech</a>
+</footer>
+
+</body>
+</html>
