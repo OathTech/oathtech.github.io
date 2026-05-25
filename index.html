@@ -1,24 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#fbfaf5">
   <title>Oath Technologies</title>
+  <meta name="description" content="Launching in mid-2026.">
+  <meta property="og:title" content="Oath Technologies">
+  <meta property="og:description" content="Launching in mid-2026.">
+  <meta property="og:url" content="https://oath.tech/">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      background: #fafafa;
-      color: #333;
+    :root {
+      --ink: #1a1a1a;
+      --muted: #5d5a52;
+      --accent: #7a3a14;
+      --bg: #fbfaf5;
     }
-    a { color: #333; }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
+                   Charter, "Bitstream Charter", Cambria, Georgia, serif;
+      color: var(--ink);
+      background: var(--bg);
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main { max-width: 28rem; }
+
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0 0 1.2rem;
+      line-height: 1.1;
+    }
+
+    .status {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 0 0 2.2rem;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 0.5px;
+      text-underline-offset: 2px;
+    }
+
+    a:hover { text-decoration-thickness: 1.2px; }
   </style>
 </head>
 <body>
-  <a href="mailto:contact@oath.tech">contact@oath.tech</a>
+  <main>
+    <h1>Oath Technologies</h1>
+    <p class="status">Launching in mid-2026.</p>
+    <p><a href="mailto:contact@oath.tech">contact@oath.tech</a></p>
+  </main>
 </body>
 </html>
