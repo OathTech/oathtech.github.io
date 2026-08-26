@@ -38,7 +38,20 @@
     margin: 0 0 2rem;
   }
 
-  .home a { color: var(--muted); }
+  .home a { color: var(--muted); text-decoration: none; }
+  .home a:hover { text-decoration: underline; }
+
+  .home .corner {
+    height: 0.7em;
+    width: auto;
+    color: var(--accent);
+    vertical-align: baseline;
+    position: relative;
+    top: -0.18em;
+  }
+
+  .home .corner:first-child { margin-right: 0.1em; }
+  .home .corner:last-child { margin-left: 0.1em; }
 
   header {
     margin-bottom: 3rem;
@@ -83,7 +96,7 @@
 </head>
 <body>
 
-<p class="home"><a href="/">Oath Technologies</a></p>
+<p class="home"><a href="/"><svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M2 18V2h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Oath Technologies<svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M8 18V2H0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
 
 <header>
   <h1>Page not found</h1>
