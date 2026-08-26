@@ -46,7 +46,7 @@
   }
 
   .home a { color: var(--muted); text-decoration: none; }
-  .home a:hover { text-decoration: underline; }
+  .home a:hover { color: var(--accent); }
 
   .home .corner {
     height: 0.7em;
@@ -89,13 +89,6 @@
     margin: 0 0 1.5rem;
   }
 
-  .bio {
-    font-size: 0.95rem;
-    color: var(--muted);
-    margin: 0;
-  }
-
-  .bio a { color: var(--ink); }
 
   h2 {
     font-size: 0.85rem;
@@ -115,13 +108,17 @@
   p { margin: 0 0 1rem; }
 
   a {
-    color: var(--accent);
+    color: inherit;
     text-decoration: underline;
-    text-decoration-thickness: 0.5px;
+    text-decoration-color: color-mix(in srgb, var(--muted) 55%, var(--bg));
+    text-decoration-thickness: 1px;
     text-underline-offset: 2px;
   }
 
-  a:hover { text-decoration-thickness: 1.2px; }
+  a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
 
   ul, ol {
     margin: 0.5rem 0 1rem;
@@ -173,7 +170,28 @@
     border-top: 1px solid var(--rule);
     font-size: 0.85rem;
     color: var(--muted);
+    display: grid;
+    grid-template-columns: 5.4rem 1fr;
+    align-items: start;
+    line-height: 1.5;
   }
+
+  footer .logo {
+    height: 4rem;
+    width: auto;
+  }
+
+  footer .sig {
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.2;
+  }
+
+  footer p { margin: 0; }
+
+  footer .imprint { font-size: 0.78rem; }
 
   @media (max-width: 600px) {
     html { font-size: 16px; }
@@ -302,7 +320,12 @@
 </section>
 
 <footer>
-  <a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a>
+  <img class="logo" src="../../../../oath-logo.svg" alt="Oath">
+  <div class="sig">
+  <p><a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a></p>
+  <p>Berkeley, California</p>
+  <p class="imprint">&copy; 2026 Oath Technologies, LLC</p>
+  </div>
 </footer>
 
 </body>

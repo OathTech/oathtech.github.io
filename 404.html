@@ -39,7 +39,7 @@
   }
 
   .home a { color: var(--muted); text-decoration: none; }
-  .home a:hover { text-decoration: underline; }
+  .home a:hover { color: var(--accent); }
 
   .home .corner {
     height: 0.7em;
@@ -79,13 +79,46 @@
   p { margin: 0 0 1rem; }
 
   a {
-    color: var(--accent);
+    color: inherit;
     text-decoration: underline;
-    text-decoration-thickness: 0.5px;
+    text-decoration-color: color-mix(in srgb, var(--muted) 55%, var(--bg));
+    text-decoration-thickness: 1px;
     text-underline-offset: 2px;
   }
 
-  a:hover { text-decoration-thickness: 1.2px; }
+  a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: grid;
+    grid-template-columns: 5.4rem 1fr;
+    align-items: start;
+    line-height: 1.5;
+  }
+
+  footer .logo {
+    height: 4rem;
+    width: auto;
+  }
+
+  footer .sig {
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.2;
+  }
+
+  footer p { margin: 0; }
+
+  footer .imprint { font-size: 0.78rem; }
 
   @media (max-width: 600px) {
     html { font-size: 16px; }
@@ -104,6 +137,15 @@
 </header>
 
 <p>Try the <a href="/">front page</a>, or write to <a href="mailto:contact@oath.tech">contact@oath.tech</a> if you followed a link that should work.</p>
+
+<footer>
+  <img class="logo" src="/oath-logo.svg" alt="Oath">
+  <div class="sig">
+  <p><a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a></p>
+  <p>Berkeley, California</p>
+  <p class="imprint">&copy; 2026 Oath Technologies, LLC</p>
+  </div>
+</footer>
 
 </body>
 </html>
