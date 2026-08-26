@@ -1,73 +1,195 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="light">
-  <meta name="theme-color" content="#fbfaf5">
-  <title>Oath Technologies</title>
-  <meta name="description" content="Launching in mid-2026.">
-  <meta property="og:title" content="Oath Technologies">
-  <meta property="og:description" content="Launching in mid-2026.">
-  <meta property="og:url" content="https://oath.tech/">
-  <meta property="og:type" content="website">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <style>
-    :root {
-      --ink: #1a1a1a;
-      --muted: #5d5a52;
-      --accent: #7a3a14;
-      --bg: #fbfaf5;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf5">
+<title>Oath Technologies</title>
+<meta name="description" content="Oath Technologies is a Focused Research Organization working on AI oversight via formal methods.">
+<meta property="og:title" content="Oath Technologies">
+<meta property="og:description" content="A Focused Research Organization working on AI oversight via formal methods.">
+<meta property="og:url" content="https://oath.tech/">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://oath.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --muted: #5d5a52;
+    --rule: #d8d4cc;
+    --accent: #7a3a14;
+    --bg: #fbfaf5;
+  }
 
-    html, body { height: 100%; }
+  html { font-size: 17px; }
 
-    body {
-      font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
-                   Charter, "Bitstream Charter", Cambria, Georgia, serif;
-      color: var(--ink);
-      background: var(--bg);
-      margin: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 2rem;
-      text-rendering: optimizeLegibility;
-      -webkit-font-smoothing: antialiased;
-    }
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
+                 Charter, "Bitstream Charter", Cambria, Georgia, serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    max-width: 38rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem 6rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
 
-    main { max-width: 28rem; }
+  header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
 
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin: 0 0 1.2rem;
-      line-height: 1.1;
-    }
+  h1 {
+    font-size: 2.3rem;
+    text-wrap: balance;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    line-height: 1.1;
+  }
 
-    .status {
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin: 0 0 2.2rem;
-    }
+  .subtitle {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0;
+    text-wrap: balance;
+  }
 
-    a {
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-thickness: 0.5px;
-      text-underline-offset: 2px;
-    }
+  h2 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 3.5rem 0 1rem;
+  }
 
-    a:hover { text-decoration-thickness: 1.2px; }
-  </style>
+  section:first-of-type h2 { margin-top: 0; }
+
+  p { margin: 0 0 1rem; }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-thickness: 0.5px;
+    text-underline-offset: 2px;
+  }
+
+  a:hover { text-decoration-thickness: 1.2px; }
+
+  ul.work {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ul.work li {
+    margin: 0 0 1.2rem;
+    padding-left: 5.4rem;
+    position: relative;
+  }
+
+  ul.work time {
+    position: absolute;
+    left: 0;
+    top: 0.2em;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  ul.work .kind {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-left: 0.2rem;
+  }
+
+  ul.work a { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: grid;
+    grid-template-columns: 5.4rem 1fr;
+    align-items: start;
+    line-height: 1.5;
+  }
+
+  footer .logo {
+    height: 4rem;
+    width: auto;
+    margin-top: 0.25rem;
+  }
+
+  footer p { margin: 0 0 0.5rem; }
+  footer p:last-child { margin-bottom: 0; }
+
+  footer .imprint {
+    font-size: 0.78rem;
+    margin-top: 0.9rem;
+  }
+
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    body { margin: 2rem auto; padding: 0 1.2rem 4rem; }
+    h1 { font-size: 1.8rem; }
+    h2 { margin-top: 2.5rem; }
+    ul.work li { padding-left: 0; }
+    ul.work time { position: static; display: block; margin-bottom: 0.1rem; }
+  }
+</style>
 </head>
 <body>
-  <main>
-    <h1>Oath Technologies</h1>
-    <p class="status">Launching in mid-2026.</p>
-    <p><a href="mailto:contact@oath.tech">contact@oath.tech</a></p>
-  </main>
+
+<header>
+  <h1>Oath Technologies</h1>
+  <p class="subtitle">A Focused Research Organization working on AI oversight via formal methods.</p>
+</header>
+
+<section>
+  <h2>About</h2>
+  <p>Future AIs will operate at scales and speeds that mean we can&rsquo;t oversee them directly. We need ways to scale human oversight, with trustworthy evidence that rules are obeyed. That is what Oath is building.</p>
+  <p>The hardest part of this problem is specifying what humans want in a way that is understandable and robust to AI deception. The alternative, trusting powerful AIs without understanding what they do, seems unlikely to go well.</p>
+  <p>Our aim is to keep humans safe and in control as we move through these extraordinary times.</p>
+</section>
+
+<section>
+  <h2>Work</h2>
+  <ul class="work">
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="pub/2026/08/tentative-advice-building-with-ai/">Tentative Advice on Building with AI</a> <span class="kind">[Talk]</span> &mdash; how do we use AI to build formal tools?</div></li>
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/brick-wp">brick-wp</a> <span class="kind">[Tool]</span> &mdash; Rocq automation for verifying C++ with BRiCk.</div></li>
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/grossmith">grossmith</a> <span class="kind">[Tool]</span> &mdash; generate small, valid Go programs for differential testing of Go reimplementations and semantics.</div></li>
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/cerberus-lean">cerberus-lean</a> <span class="kind">[Tool]</span> &mdash; a port of the Cerberus C semantics to Lean&nbsp;4, with Iris-based verification.</div></li>
+    <li><time datetime="2026-07">Jul 2026</time><div><a href="https://github.com/OathTech/covmap">covmap</a> <span class="kind">[Tool]</span> &mdash; keep specifications connected to the code that implements them.</div></li>
+    <li><time datetime="2026-06">Jun 2026</time><div><a href="https://github.com/OathTech/golean">golean</a> <span class="kind">[Tool]</span> &mdash; a Go semantics and Iris-based formal verifier in Lean&nbsp;4.</div></li>
+    <li><time datetime="2026-05">May 2026</time><div><a href="pub/2026/05/semantics-done-quick/">Semantics Done Quick</a> <span class="kind">[Proposal]</span> &mdash; using AI agents to build trusted formal semantics for real-world programming languages. An Apart &times; Atlas Secure Program Synthesis Fellowship project.</div></li>
+    <li><time datetime="2026-03">Mar 2026</time><div><a href="https://github.com/OathTech/ACL2Lean">ACL2Lean</a> <span class="kind">[Tool]</span> &mdash; replay ACL2 proofs as kernel-checked Lean&nbsp;4 proofs.</div></li>
+    <li><time datetime="2026-02">Feb 2026</time><div><a href="https://github.com/OathTech/lean-tcb">lean-tcb</a> <span class="kind">[Tool]</span> &mdash; find the definitions you need to review to trust a Lean theorem.</div></li>
+  </ul>
+</section>
+
+<footer>
+  <img class="logo" src="oath-logo.svg" alt="Oath">
+  <div>
+  <p>Oath Technologies is a public-good nonprofit, fiscally sponsored by <a href="https://www.convergentresearch.org/">Convergent Research</a>. Supported by <a href="https://coefficientgiving.org/">Coefficient Giving</a>, <a href="https://halcyonfutures.org/">Halcyon Futures</a>, <a href="https://hewlett.org/">the Hewlett Foundation</a>, and the <a href="https://survivalandflourishing.fund/">Survival and Flourishing Fund</a>.</p>
+  <p><a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a></p>
+  <p class="imprint">&copy; 2026 Oath Technologies, LLC</p>
+  </div>
+</footer>
+
 </body>
 </html>
