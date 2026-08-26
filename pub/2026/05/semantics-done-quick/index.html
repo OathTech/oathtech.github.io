@@ -16,11 +16,11 @@
 <link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
 <style>
   :root {
-    --ink: #1a1a1a;
-    --muted: #5d5a52;
-    --rule: #d8d4cc;
+    --ink: #102f28;
+    --muted: #4f6660;
+    --rule: #c9d6d0;
     --accent: #7a3a14;
-    --bg: #fbfaf5;
+    --bg: #f4f8f5;
   }
 
   html { font-size: 17px; }
@@ -209,7 +209,7 @@
 <section>
   <h2>High-level background</h2>
   <p>Three lines of work are foundational for this project.</p>
-  <p>There is a long and noble tradition of building tested operational semantics for messy real-world languages: <a href="https://link.springer.com/chapter/10.1007/978-3-642-14107-2_7">&lambda;JS for JavaScript</a> (Guha, Saftoiu, Krishnamurthi, ECOOP 2010), <a href="https://cs.brown.edu/~sk/Publications/Papers/Published/pmmwplck-python-full-monty/">'Python: The Full Monty'</a> (Politz et al., OOPSLA 2013, which reports ~72 person-months), <a href="https://fsl.cs.illinois.edu/publications/park-stefanescu-rosu-2015-pldi.html">KJS</a> in the K framework (Park, Stefanescu, Ro&#537;u, PLDI 2015), and <a href="https://www.cl.cam.ac.uk/~pes20/cerberus/">Cerberus</a> for C (Memarian, Sewell, et al., PLDI 2016 onwards). Each of these took a dedicated expert team years, in some cases more than a decade. This is much too slow.</p>
+  <p>There is a long and noble tradition of building tested operational semantics for messy real-world languages: <a href="https://link.springer.com/chapter/10.1007/978-3-642-14107-2_7">&lambda;JS for JavaScript</a> (Guha, Saftoiu, Krishnamurthi, ECOOP 2010), <a href="https://cs.brown.edu/~sk/Publications/Papers/Published/pmmwplck-python-full-monty/">'Python: The Full Monty'</a> (Politz et al., OOPSLA 2013, which reports ~72 person-months), <a href="https://doi.org/10.1145/2737924.2737991">KJS</a> in the K framework (Park, Stefanescu, Ro&#537;u, PLDI 2015), and <a href="https://www.cl.cam.ac.uk/~pes20/cerberus/">Cerberus</a> for C (Memarian, Sewell, et al., PLDI 2016 onwards). Each of these took a dedicated expert team years, in some cases more than a decade. This is much too slow.</p>
   <p>Krishnamurthi, Lerner, and Elberty's <a href="https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.SNAPL.2019.9">'The Next 700 Semantics: A Research Challenge'</a> (SNAPL 2019) names automated semantics elicitation as an explicit open problem and documents four pre-LLM attempts at automation, all unsuccessful. They close with an explicit open question: can a system exploit prose documentation to make the problem tractable?</p>
   <p>Recent capability results suggest the answer might be yes. Epoch and METR's <a href="https://epoch.ai/blog/mirrorcode-preliminary-results">MirrorCode benchmark</a> (April 2026) shows frontier agents reimplementing multi-thousand-line programs from black-box behaviour, including Apple's Pkl. <a href="https://www.basis.ai/blog/verified-compiler/">Basis.ai's April 2026 experiment</a> showed multi-agent Claude Code generating a monolithic Lean 4 operational model for JavaScript, validated against <a href="https://github.com/tc39/test262">Test262</a>. Nobody has yet built a trustworthy and principled model, or used it as a basis for other formal tools.</p>
 </section>
