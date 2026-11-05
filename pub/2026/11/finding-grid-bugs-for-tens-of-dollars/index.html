@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#f4f8f5">
+<title>Finding Power-Grid Bugs for Tens of Dollars — Oath Technologies</title>
+<meta name="description" content="AI agents turn long-established verification tools into security audits any team can afford.">
+<meta property="og:title" content="Finding Power-Grid Bugs for Tens of Dollars">
+<meta property="og:description" content="AI agents turn long-established verification tools into security audits any team can afford.">
+<meta property="og:url" content="https://oath.tech/pub/2026/11/finding-grid-bugs-for-tens-of-dollars/">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://oath.tech/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:site_name" content="Oath Technologies">
+<meta property="og:image:alt" content="Oath Technologies">
+<meta name="twitter:title" content="Finding Power-Grid Bugs for Tens of Dollars">
+<meta name="twitter:description" content="AI agents turn long-established verification tools into security audits any team can afford.">
+<meta name="twitter:image" content="https://oath.tech/og.png">
+<link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
+<style>
+  :root {
+    --ink: #102f28;
+    --muted: #4f6660;
+    --rule: #c9d6d0;
+    --accent: #7a3a14;
+    --bg: #f4f8f5;
+  }
+
+  html { font-size: 17px; }
+
+  body {
+    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
+                 Charter, "Bitstream Charter", Cambria, Georgia, serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.65;
+    max-width: 38rem;
+    margin: 4rem auto;
+    padding: 0 1.5rem 6rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    hyphens: auto;
+  }
+
+  .home {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 0 0 2rem;
+  }
+
+  .home a { color: var(--muted); text-decoration: none; }
+  .home a:hover { color: var(--accent); }
+
+  .home .corner {
+    height: 0.7em;
+    width: auto;
+    color: var(--accent);
+    vertical-align: baseline;
+    position: relative;
+    top: -0.18em;
+  }
+
+  .home .corner:first-child { margin-right: 0.1em; }
+  .home .corner:last-child { margin-left: 0.1em; }
+
+  header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  h1 {
+    font-size: 2.3rem;
+    text-wrap: balance;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin: 0 0 1.8rem;
+    text-wrap: balance;
+  }
+
+  .byline {
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 0 0 1.5rem;
+  }
+
+
+  h2 {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin: 3.5rem 0 1rem;
+  }
+
+  h3 {
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 1.8rem 0 0.4rem;
+  }
+
+  p { margin: 0 0 1rem; }
+
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-decoration-color: color-mix(in srgb, var(--muted) 55%, var(--bg));
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
+  }
+
+  a:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+
+  ul, ol {
+    margin: 0.5rem 0 1rem;
+    padding-left: 1.4rem;
+  }
+
+  li { margin-bottom: 0.5rem; }
+
+  code {
+    font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+    font-size: 0.85em;
+    background: rgba(0,0,0,0.04);
+    padding: 0.1em 0.35em;
+    border-radius: 2px;
+  }
+
+
+  pre {
+    background: rgba(0,0,0,0.04);
+    padding: 0.8rem 1rem;
+    margin: 0 0 1rem;
+    border-radius: 2px;
+    overflow-x: auto;
+    line-height: 1.45;
+    hyphens: none;
+  }
+
+  pre code {
+    background: none;
+    padding: 0;
+    font-size: 0.8rem;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0.5rem 0 1.5rem;
+    font-size: 0.93rem;
+    font-variant-numeric: tabular-nums;
+    hyphens: none;
+  }
+
+  th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.35rem 0.75rem 0.35rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  th {
+    font-weight: 600;
+    border-bottom-color: var(--muted);
+  }
+
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: grid;
+    grid-template-columns: 5.4rem 1fr;
+    align-items: start;
+    line-height: 1.5;
+  }
+
+  footer .logo {
+    height: 4rem;
+    width: auto;
+  }
+
+  footer .sig {
+    height: 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    line-height: 1.2;
+  }
+
+  footer p { margin: 0; }
+
+  footer .imprint { font-size: 0.78rem; }
+
+  @media (max-width: 600px) {
+    html { font-size: 16px; }
+    body { margin: 2rem auto; padding: 0 1.2rem 4rem; }
+    h1 { font-size: 1.8rem; }
+    h2 { margin-top: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<p class="home"><a href="../../../../"><svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M2 18V2h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Oath Technologies<svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M8 18V2H0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+
+<header>
+  <h1>Finding Power-Grid Bugs for Tens of Dollars</h1>
+  <p class="subtitle">AI agents turn long-established verification tools into security audits any team can afford.</p>
+  <p class="byline">Lee Pike and Mike Dodds &middot; Oath Technologies &middot; November 2026</p>
+</header>
+
+<p>The public conversation about AI and vulnerability discovery has settled on a story: finding real
+security bugs takes a frontier model, a purpose-built scaffold, and a large compute budget. For example, Anthropic's Claude Mythos Preview found a 27-year-old flaw in OpenBSD's TCP stack,
+but only after
+<a href="https://www.sovereignmagazine.com/article/claude-mythos-27-year-bug-cost">roughly 1,000 runs costing just under $20,000</a>.
+The same effort, Project Glasswing, has since
+<a href="https://www.helpnetsecurity.com/2026/05/26/anthropic-project-glasswing-update/">reported more than 10,000 vulnerabilities</a>
+backed by $100 million in model credits.</p>
+<p>Formal verification is following the same path. On October 22, Anthropic and Theorem
+<a href="https://www.anthropic.com/research/formal-verification">reported</a> that Claude had proven 239
+entry points across 123 open-source libraries free of crashes for every input under 64 MB. The
+proofs work on the compiled RISC-V machine code, are checked by the Rocq proof assistant, and rest
+on formal models of the processor and of Linux. Together they run to about 180 million lines of
+Rocq, and a single proof can take hundreds of millions of tokens to produce. Along the way, the
+effort found hundreds of bugs.</p>
+<p>Models like Fable and Mythos are extraordinary at finding long-standing bugs that have survived decades of review. And machine-checked proofs can now give a far stronger guarantee than any list of bugs. But many exploitable defects in critical software can be found much more cheaply than this, for tens of dollars per codebase. The formal tools that can find them have existed for years, but are often overlooked in practice. Now, language-model agents can do the tedious work, meaning any team can afford this today.</p>
+<p>Recently, we put that claim to the test against open-source software that runs the power grid. Analyzing ten open-source projects, we found 29 defects at a median AI-assistant cost of about $35 per project, and with better session hygiene, we estimate $10–$20 per project going forward. We are releasing as open source <a href="https://github.com/OathTech/crit-infra-methodology">our Claude Code methodology</a> for others to carry out similar work.</p>
+
+<section>
+<h2>What we audited</h2>
+<p>The software that runs the power grid has become a direct target for malicious behavior. The <a href="https://www.welivesecurity.com/2017/06/12/industroyer-biggest-threat-industrial-control-systems-since-stuxnet/">Industroyer malware</a> that blacked out part of Kyiv in 2016 spoke the grid's own protocols to operate substation breakers directly, and a <a href="https://www.welivesecurity.com/2022/04/12/industroyer2-industroyer-reloaded/">second variant</a> was turned on Ukraine's grid again in 2022. More recently, U.S. and allied agencies have <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a">warned</a> that state-backed groups are quietly pre-positioning inside power, water, and communications networks rather than simply spying on them. Much of the code that actually parses these protocols is open source, written in C, and maintained by small teams, exactly the kind of software we set out to examine.</p>
+<p>We audited ten open-source protocol stacks that run inside power-grid substations, RTUs, PLCs, smart meters,
+EV chargers, and grid-facing industrial servers. Between them they cover SCADA telemetry and
+control, substation automation, industrial machine-to-machine messaging, utility meter reading,
+and communication between electric vehicles and chargers. Many are embedded in commercial
+equipment whose operators may not even know it is there.</p>
+<p>We found these projects by searching for well-supported open-source protocol stacks with evidence of commercial usage. Nine of the stacks are written in <strong>C</strong> and one in <strong>C++</strong>. Several also ship bindings or sibling
+ports in C#, Java, or Python. This is the classic profile for memory-safety bugs: hand-written
+parsers for binary wire formats in a language with no bounds checking, often running on embedded
+targets with few runtime defenses.</p>
+<p>Several of these projects have vulnerability reports open with their maintainers, so we have anonymized the projects, labeling them <strong>Project A through Project J</strong>.</p>
+</section>
+
+<section>
+<h2>What we found</h2>
+<table>
+<tbody>
+<tr>
+<td>Confirmed defects</td>
+<td><strong>29</strong></td>
+</tr>
+<tr>
+<td>— of those: filed with vendors / held / needed no report</td>
+<td><strong>6 / 12 / 11</strong></td>
+</tr>
+<tr>
+<td>Found by fuzzing / bounded model checking / agent-led code review</td>
+<td><strong>8 / 5 / 16</strong></td>
+</tr>
+<tr>
+<td>Projects with findings / no findings</td>
+<td><strong>6 / 4</strong></td>
+</tr>
+<tr>
+<td>Fuzzer executions across all campaigns</td>
+<td><strong>13.6 billion+</strong></td>
+</tr>
+<tr>
+<td>ESBMC bounded-model-checking proofs attempted</td>
+<td><strong>60</strong></td>
+</tr>
+<tr>
+<td>TLA+ protocol models built and checked against the real code</td>
+<td><strong>6</strong></td>
+</tr>
+<tr>
+<td>Published CVEs and advisories re-audited against exact commits</td>
+<td><strong>26</strong></td>
+</tr>
+<tr>
+<td>Total model spend, all ten projects, at API list price</td>
+<td><strong>about $1,050</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The defects range from remotely reachable out-of-bounds reads and writes, through integer overflows
+that are undefined behavior in C, to memory leaks, null dereferences, reachable assertions, and protocol-logic flaws in how a receiver tracks sequence state.</p>
+<p>We filed disclosures for 6 bugs. Another 12 are confirmed but held, most queued behind a higher-severity report for the same project. The remaining 11 needed no report from us: fixed upstream before we could file, already filed publicly by other researchers, or otherwise already handled.</p>
+</section>
+
+<section>
+<h2>The method: free tools that have existed for years</h2>
+<p>Three families of tools did the heavy lifting. Fuzzing discovered 8 of the 29 defects and bounded
+model checking discovered 5. The other 16 came from agents reading code with a specific
+question in mind, which we describe in the next section. Often that question came from a tool: a
+fuzzer finds one signed-shift bug, and an agent then sweeps the codebase for others like it.
+TLA+ discovered nothing new on its own. Its value was turning a suspected logic bug into a proven
+one, and proving other code correct.</p>
+<p>All of these tools are open source, and all of them run on a laptop or a modest workstation. Ours was an 8-core machine with under 8 GB of RAM, shared by
+three concurrent audits. Running these tools costs nothing but electricity. No tokens are spent
+while a fuzzer or a model checker is working. The 13.6 billion fuzz executions above cost us
+nothing in model fees.</p>
+<p><strong>Coverage-guided fuzzing.</strong> A fuzzer such as <a href="https://llvm.org/docs/LibFuzzer.html">libFuzzer</a>
+feeds millions of mutated inputs into a parser per minute, steered toward inputs that reach new
+code, while sanitizers watch for memory errors and undefined behavior. It is the fastest way to
+find shallow-to-moderate memory bugs in wire-format decoders. One project had no tests, no CI, and
+no fuzzing at all. A harness an agent wrote from scratch found a real memory bug
+in its first minute of running. In another, an earlier source review had come up clean, and only
+fuzzing afterwards found both of its defects. One of the two belonged to a class of
+integer-overflow bug that the review had declared absent. The review had searched for the usual
+literal patterns, such as <code>&lt;&lt; 24</code>, but the real code shifted by an amount computed at runtime.
+Here is a generic illustration of the class:</p>
+<pre><code class="language-c">for (i = 0; i &lt; n; i++)
+    value |= buf[i] &lt;&lt; (8 * i);   /* int promotion: at i == 3, a byte &gt;= 0x80 overflows */
+</code></pre>
+<p>No search for a literal pattern finds that line, but a fuzzer running under UBSan finds it
+quickly.</p>
+<p>A fuzz harness is usually a few lines. The agent's real work is building the library so that
+the fuzzer can actually see inside it (see the lessons below):</p>
+<pre><code class="language-c">int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+    decode_message(data, size);
+    return 0;
+}
+</code></pre>
+<p>Here is a typical find. UBSan flagged it about five seconds into a one-minute smoke run, on a
+4-byte input:</p>
+<pre><code class="language-c">int32_t v = (buf[0] &amp; 0x80) ? -1 : 0;   /* sign-extend a negative value */
+for (i = 0; i &lt; len; i++)
+    v = (v &lt;&lt; 8) | buf[i];             /* UB: left-shifting a negative value */
+</code></pre>
+<p>The fix is to accumulate in a <code>uint32_t</code> and convert once at the end. On today's compilers this
+usually does what the author intended, which is why it can survive for years. But a compiler is still
+allowed to miscompile it, and in a build that traps on overflow, it becomes a crash. Other fuzzing
+finds in the same audits included a memory leak on a parse-error path, unbounded recursion on
+deeply nested input, and a read past the end of a buffer in a shared bit-reader:</p>
+<pre><code class="language-c">bit = (data[byte_pos] &gt;&gt; bit_pos) &amp; 1;   /* never checks byte_pos &lt; len */
+</code></pre>
+<p><strong>Bounded model checking with <a href="https://github.com/esbmc/esbmc">ESBMC</a>.</strong> A fuzzer samples inputs,
+while a model checker reasons about <em>all</em> inputs up to a bound. Given a small harness around a
+function, ESBMC either proves that no input within the bound causes an out-of-bounds access,
+overflow, or null dereference, or it returns the exact input that does. The two techniques are
+complements, not substitutes. In one codec, every fuzz harness crashed within a few dozen inputs
+on the same low-level bug, which left the rest of the decoder unreachable for dynamic testing. ESBMC
+reasons symbolically rather than by running inputs, so it was not blocked by that crash, and it
+found a second, independent defect that fuzzing never reached.</p>
+<p>Model checkers are good at edge cases that a byte-mutating fuzzer has no reason to try. Here is
+one ESBMC found:</p>
+<pre><code class="language-c">bool negative = buf[0] &amp; 0x80;   /* reads buf[0] even when len == 0 */
+</code></pre>
+<p>The harness says "any length from 0 to 9, any contents" and lets the checker do the rest:</p>
+<pre><code class="language-c">size_t len = nondet_size();
+__ESBMC_assume(len &lt;= 9);
+uint8_t *buf = malloc(len);      /* contents are unconstrained */
+__ESBMC_assume(buf != NULL);
+decode_int(buf, len);
+</code></pre>
+<pre><code class="language-sh">esbmc harness.c decode.c --overflow-check --ub-shift-check --unwind 10
+</code></pre>
+<p>ESBMC returned a counterexample with <code>len == 0</code>, a one-byte read past a zero-length allocation.
+After a one-line guard, the same harness reports <code>VERIFICATION SUCCESSFUL</code>. That is a proof for
+every size up to 9 and every possible byte value, not a sample of them. In the same audit, ESBMC
+also found an unchecked <code>malloc()</code> result, because it explores allocation failure by default and
+most fuzzers don't. Other ESBMC finds included a reachable <code>assert(0)</code> and a silent unsigned
+wraparound in an integer decoder.</p>
+<p>Proofs also make good regression tests. Where a bug is confirmed but not yet fixed upstream, we
+check in an ESBMC proof that is <em>expected to fail</em>. It becomes a trip-wire that flips to passing on
+the day the fix lands.</p>
+<p><strong>Protocol modeling with <a href="https://lamport.azurewebsites.net/tla/tla.html">TLA+</a>.</strong> Some of the most
+important grid-protocol bugs aren't memory errors. They are logic errors in state that persists
+across messages: sequence numbers, acknowledgment windows, counters that wrap around, and the
+accept/reject decisions made from them. Nothing crashes when a stale or replayed message is
+wrongly accepted, so fuzzing can never see these bugs. We wrote small TLA+ models of how a
+receiver should track that state and let the TLC model checker explore every reachable state.</p>
+<p>In one project, code review had flagged a receiver that looked too lenient about sequence numbers.
+Here is the check, simplified. It has since been fixed upstream, and it had already been reported
+publicly by another researcher:</p>
+<pre><code class="language-c">if (state == last_state &amp;&amp; seq &lt;= last_seq)
+    return REJECT;   /* the only case that is ever rejected */
+return ACCEPT;       /* any other state number, with any sequence number */
+</code></pre>
+<p>The protocol's rule fits in three lines of TLA+:</p>
+<pre><code class="language-tla">Valid(st, sq) ==
+    \/ (st = lastState /\ sq &gt; lastSeq)          \* same state: sequence must advance
+    \/ (st &gt; lastState /\ sq = 0)                \* new state: sequence restarts at 0
+    \/ (lastState = Max /\ st = 0 /\ sq = 0)     \* the one legal wraparound
+</code></pre>
+<p>The bridge fed both the model and the real C function the same transitions. They disagreed on 87
+of 144. The suspicion turned out to be too narrow: besides accepting a new state without a
+sequence reset, the code accepted a state number that went <em>backwards</em>, which is a plain replay.
+After the fix, all 153 transitions in the extended sweep agree. In another project, the bridge drove the real
+sequence-window function across all 67 million of its possible inputs, with no mismatch against the model.
+That is a positive result worth as much as a finding.</p>
+<p>The key to TLA+ is a bridge: a separate harness that runs the real C function against the
+model, transcribed independently from the source. Twice, a model passed every one of its own
+checks while silently disagreeing with the code it described, and only the bridge caught it. We
+use TLA+ selectively, only when a protocol meets a short list of entry criteria. When it doesn't,
+we write down a "not modeled, and here's why" decision.</p>
+<p>None of these tools is new. ESBMC, TLA+, and libFuzzer have each been mature for years. What kept
+them out of most engineering teams was expertise and labor:
+building the target with the right instrumentation, writing harnesses, stubbing out hardware,
+choosing bounds, and reading the output. That is exactly the work language-model agents are now
+good at. In one audit, ESBMC itself lacked support for two C++ library features the target
+used, and the agent extended the checker rather than giving up on the target.</p>
+<h3>Tools keep the agents honest</h3>
+<p>These tools also take most of the hallucination risk out of the results. When an agent says it
+found a bug, a fuzzer or model checker gives you something you can check without trusting the
+model: an input that crashes a sanitizer-instrumented build, or a counterexample you can replay.
+When an agent says a piece of code is safe, ESBMC either reports <code>VERIFICATION SUCCESSFUL</code> or it
+doesn't. A language model can invent a plausible-sounding bug, but it cannot make AddressSanitizer
+fire on code that has no bug.</p>
+<p>The risk doesn't vanish. It moves to the setup, where it is easier to check. An agent can write a
+harness that feeds the library inputs no real caller could produce, and in three of our first
+seven audits an apparent crash turned out to be exactly that. A TLA+ model can describe the
+protocol wrongly, and an ESBMC harness can assume away the very inputs that would trigger a bug.
+The gates in our methodology exist to catch these: a check that the production caller can really
+produce the crashing input, the bridge between each TLA+ model and the real code, and a check that
+the fuzzer is actually instrumented. Each turns "do you believe the agent?" into "does this check
+pass?"</p>
+<h3>Limitations</h3>
+<p>None of this is full formal verification, and none of it is exhaustive. We have not proven any
+library functionally correct, meaning that it does what its protocol specification says it
+should. Each ESBMC proof covers one function, a handful of properties, and inputs up to a small
+bound. Each TLA+ model covers one piece of protocol state. Fuzzing only finds what its harnesses
+reach. And we looked for particular classes of bug, mainly memory safety, undefined behavior and
+sequence-number logic. We did not systematically look for cryptographic weaknesses,
+authentication design flaws, timing side channels, or most other protocol-logic errors.</p>
+<p>The defects in this post are low-hanging fruit: bugs that cheap, well-understood tools find once
+someone does the work of setting them up. That is the point of the post. These bugs are still out
+there in software that runs the grid, and finding them no longer requires a large budget. But a
+clean result from this method means only that these tools, applied this way, found nothing. It
+does not mean the code is secure.</p>
+</section>
+
+<section>
+<h2>The method: let agents do the tedious work</h2>
+<p>We used Claude-based coding agents, mostly the mid-tier Sonnet 5 with Opus 5 for
+orchestration. The agents did the parts of an audit that
+are laborious rather than deep:</p>
+<ul>
+<li><strong>Building the library.</strong> Old autotools builds, CMake projects with optional features, embedded
+  configurations that only compile with the right defines. Agents work through build failures the
+  way an engineer does, and then rebuild with sanitizer and coverage instrumentation.</li>
+<li><strong>Mapping the attack surface.</strong> Agents find where attacker-controlled bytes first enter the
+  library, list every length-driven loop and copy, and rank which entry points deserve a harness.</li>
+<li><strong>Setting up the tools.</strong> Agents write libFuzzer harnesses and seed corpora, ESBMC harnesses with
+  hardware stubs and loop bounds, and TLA+ models with the independent bridge to the real code.</li>
+<li><strong>Running campaigns and collecting results.</strong> Agents run two-minute triage waves, promote only
+  the harnesses that are still finding new coverage, and stop them when coverage flattens.</li>
+<li><strong>Triage.</strong> Agents deduplicate crashes, minimize the triggering input, and check whether the
+  real production caller could ever produce that input. This last check matters: an apparent crash
+  can easily be a harness bug rather than a library bug.</li>
+<li><strong>Prior art.</strong> Agents check each finding against published CVEs, against the live upstream
+  branch, and against fixes a vendor made quietly under an internal ticket.</li>
+<li><strong>Writing the disclosure.</strong> Each package includes a concrete, deterministic trigger, a root-cause
+  analysis, a patch tested against that trigger, an honest statement of impact (including when
+  it depends on build configuration), and an explicit note that AI assistance was used. Agents
+  also find the right channel. For one project with no security policy, the agent recovered the maintainer's private address from the project's own commit
+  history.</li>
+</ul>
+<p>More than half of our findings came from agents reading code, but never open-ended "find bugs"
+reading. Each pass started from a specific question. Does this published CVE's fix cover every
+caller? Are there more instances of the bug the fuzzer just found? Do these two functions agree
+on their limits? That last question found a heap overflow, now
+fixed upstream:</p>
+<pre><code class="language-c">/* Sizing: how many bytes the caller allocates for the length field */
+size = (len &lt; 65536) ? 3 : 4;
+
+/* Encoding: how many bytes actually get written */
+if (len &lt; 65535) write_3_bytes(len); else write_4_bytes(len);
+</code></pre>
+<p>At exactly <code>len == 65535</code>, the caller allocates three bytes and the encoder writes four. The fix
+is one character, <code>65535</code> → <code>65536</code>. We found it by reading code. A short ESBMC harness that
+checks the bytes written never exceed the bytes allocated would have found it too, and would now
+prove the fix.</p>
+<h3>Why reading code found more than the tools</h3>
+<p>We didn't expect review to find more defects than the tools, and we have no controlled experiment
+that explains it. Looking back at where each finding came from, we suspect three reasons.</p>
+<p><strong>The count flatters review.</strong> Much of the review started from a tool or from a published
+advisory. In one project, a fuzzer found a signed-arithmetic bug, and an agent then found four
+more bugs of the same family by sweeping the code. The fuzzer gets credit for one and review for
+four. Several other review finds began with the text of a published CVE.</p>
+<p><strong>Review reaches code the tools didn't.</strong> A fuzzer only exercises what its harness feeds it, for
+as long as the campaign runs. Our ESBMC harnesses covered a few functions at small bounds. Review
+found bugs in a network layer outside the parser we fuzzed, and in a code path compiled only under
+one build configuration. It found one in an authentication branch reached only in the middle of a
+session, and others in a decoder the fuzzer couldn't get past an earlier crash to reach. Review
+also covers code that is unreachable today, which no dynamic tool will ever run.</p>
+<p><strong>Some bugs don't crash.</strong> Sanitizers flag memory errors and undefined behavior. They have nothing
+to say about an operator-precedence mistake that sets the wrong bits, or a missing anti-replay
+check. TLA+ can catch some logic errors like these, but only where someone has built a model.</p>
+<p>None of this weakens the case for cheap AI. The same mid-tier model did the reviewing, and it found real bugs, including the worst one in the series. The
+tools and the review also worked best together. The tools gave review its questions and confirmed
+its answers. Review covered the code that the harnesses and models never reached.</p>
+<p>Agents prepare disclosures, and humans send them. Our agents work under a hard rule that nothing
+leaves the machine: no pushes, no issue filings, no emails to maintainers. Every package is
+reviewed by a person who decides whether, when, and how to send it.</p>
+</section>
+
+<section>
+<h2>What it cost</h2>
+<p>We reconstructed every token from our session logs and priced it at published API list rates.
+This is model spend only. The fuzzing, model checking, and TLA+ runs ran on our own hardware and
+added nothing.</p>
+<table>
+<thead>
+<tr>
+<th>Project</th>
+<th>Result</th>
+<th>Model spend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Clean</td>
+<td>~$20</td>
+</tr>
+<tr>
+<td>B</td>
+<td>3 defects</td>
+<td>~$25</td>
+</tr>
+<tr>
+<td>C</td>
+<td>2 defects</td>
+<td>~$30</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Clean</td>
+<td>~$30</td>
+</tr>
+<tr>
+<td>E</td>
+<td>2 defects</td>
+<td>~$35</td>
+</tr>
+<tr>
+<td>F</td>
+<td>Clean</td>
+<td>~$35</td>
+</tr>
+<tr>
+<td>G</td>
+<td>2 defects</td>
+<td>~$45</td>
+</tr>
+<tr>
+<td>H</td>
+<td>7 defects</td>
+<td>~$65</td>
+</tr>
+<tr>
+<td>I</td>
+<td>Clean</td>
+<td>~$85</td>
+</tr>
+<tr>
+<td>J</td>
+<td>13 defects</td>
+<td>~$115</td>
+</tr>
+<tr>
+<td><strong>All ten audits</strong></td>
+<td><strong>29 defects</strong></td>
+<td><strong>~$500</strong></td>
+</tr>
+<tr>
+<td>Orchestrating session</td>
+<td></td>
+<td>~$550</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>~$1,050</strong></td>
+</tr>
+</tbody>
+</table>
+<p>A full audit of one grid protocol stack cost between about $20 and $115, roughly $35 at the
+median. The two most expensive were the first two, which established the methodology everyone
+else followed. Our first-wave numbers are attributed from shared sessions, so treat them as ±20%.
+The second wave ran one agent per phase per project, so those figures are direct measurements.
+For comparison, the frontier-model campaign cited above cost just under $20,000. Our entire
+ten-project series, orchestration included, cost about a twentieth of that. It is also orders of
+magnitude below a traditional manual audit.</p>
+<h3>Where the money actually went, and how to do it for $10–$20</h3>
+<p>More than half of the total isn't the audits. It's the orchestrating session: one long conversation
+that planned the second wave, supervised the agents, and prepared and re-verified every
+disclosure. That work was real, but its price wasn't: 97% of that session's tokens were the
+model re-reading its own ever-growing conversation history, and it ran on a model about two
+and a half times the price of the audit agents. Across everything we spent, about 72% went to re-reading
+context. Very little of the bill was the model actually thinking. That means most of it can be cut:</p>
+<ol>
+<li><strong>Replace the supervisor with a file.</strong> Lessons from one audit go into a short, checked-in
+   methodology document that every new agent reads at the start. Reading 400 lines costs cents.
+   We made this switch partway through, and it is the single biggest saving.</li>
+<li><strong>Use short sessions, one per phase.</strong> Each phase (build, fuzz, model-check, write up) starts
+   fresh and hands off through files on disk, not through a growing conversation. Our second-wave
+   audits, which worked this way, cost $25–$65 each.</li>
+<li><strong>Keep the model out of the waiting.</strong> A 30-minute fuzzing campaign needs no model watching it.
+   A shell script waits, and the agent resumes when the campaign exits with a result.</li>
+<li><strong>Use a smaller model for mechanical phases.</strong> Builds, harness boilerplate, re-running gates, and
+   refreshing documents don't need a strong model. Claude Haiku 4.5 costs half as much as Sonnet 5
+   per token. Save the stronger model for triage and disclosure judgment.</li>
+</ol>
+<p>Applied together, we estimate that a full audit of one library costs $10–$20.</p>
+</section>
+
+<section>
+<h2>The methodology, open to everyone</h2>
+<p>We're releasing <a href="https://github.com/OathTech/crit-infra-methodology">the methodology we used</a> so that others can run these audits themselves. The
+repository contains:</p>
+<ul>
+<li><strong>An agent contract.</strong> This phase-by-phase playbook takes an agent from cloning a library to a
+  disclosure package. It defines an exit gate for each phase and a time budget for each step, and
+  includes a "kill gate" that rejects a weak target in 90 minutes instead of three days. It names
+  no project and no finding. It contains only the method and the traps above, each with the
+  command that catches it.</li>
+<li><strong>Standing instructions.</strong> Your coding agent loads these automatically. They include the
+  read-only-to-the-outside-world rule and permission settings that enforce it, so an agent can
+  prepare a disclosure but cannot send one.</li>
+<li><strong>Build and verification templates.</strong> These include a sanitizer-and-coverage build script for
+  fuzzing and an ESBMC driver that runs a library's harnesses in tiers.</li>
+<li><strong>Orchestration scripts.</strong> These let several audits share one ordinary machine without starving
+  each other of CPU or memory.</li>
+</ul>
+<p><strong>Running it safely.</strong> An audit has an agent build and run untrusted third-party code — it clones a
+library, compiles it, and runs it against a flood of fuzzed inputs — so we recommend running the
+whole pipeline in a disposable sandbox, such as a container or VM, with no access to your
+credentials or internal network. The methodology also constrains the agent directly. The standing
+instructions make it read-only to the outside world, and that rule is the boundary; a checked-in
+set of permission <code>deny</code> rules is the backstop, blocking the concrete ways an agent could write off
+the machine — <code>git push</code>, changing a remote, <code>gh</code>/<code>glab</code>, <code>git send-email</code>, and the <code>curl</code>/<code>wget</code>
+flags that upload data. Reading — fetching sources, cloning repositories, searching the web — stays
+allowed. The agent assembles a disclosure package on disk, but sending it is always a human step.
+All of this is short and checked in, so you can read exactly what the agent may and may not do
+before you run it.</p>
+<p>The aim is that a utility engineer, a grid operator's software team, or a vendor's own developers
+can run a credible audit of the protocol libraries they depend on, without expertise in
+security research or formal methods. The agent sets up the fuzzer, writes the model-checking
+harness, and drafts the TLA+ model. You review the findings and decide what to report.</p>
+</section>
+
+<section>
+<h2>Conclusion</h2>
+<p>Frontier models are moving the ceiling of what automated vulnerability research can find, and
+that matters. But the floor has moved too, and it has moved further for most of the software that
+runs critical infrastructure. Fuzzers, bounded model checkers, and specification languages have
+been powerful for years. Agents have now made them nearly push-button to use. Ten audits of grid
+protocol stacks produced 29 confirmed defects for about $500 of audit work. Better session
+hygiene could cut most of that bill again.</p>
+<p>You don't need to wait for access to the most capable model to find and fix these bugs, and
+neither do the people who depend on this software.</p>
+<p><em>AI disclosure: AI assisted in writing this post and the work described within it.</em></p>
+</section>
+
+<footer>
+  <img class="logo" src="../../../../oath-logo.svg" alt="Oath">
+  <div class="sig">
+  <p><a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a></p>
+  <p>Berkeley, California</p>
+  <p class="imprint">&copy; 2026 Oath Technologies, LLC</p>
+  </div>
+</footer>
+
+</body>
+</html>
