@@ -4,230 +4,97 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#f4f8f5">
 <title>Oath Technologies</title>
 <meta name="description" content="Oath Technologies is a Focused Research Organization working on AI oversight via formal methods.">
 <meta property="og:title" content="Oath Technologies">
 <meta property="og:description" content="A Focused Research Organization working on AI oversight via formal methods.">
 <meta property="og:url" content="https://oath.tech/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://oath.tech/og.png">
+<meta property="og:image" content="https://oath.tech/brand/oath-share-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:site_name" content="Oath Technologies">
-<meta property="og:image:alt" content="Oath Technologies">
+<meta property="og:image:alt" content="Oath logo">
 <meta name="twitter:title" content="Oath Technologies">
 <meta name="twitter:description" content="A Focused Research Organization working on AI oversight via formal methods.">
-<meta name="twitter:image" content="https://oath.tech/og.png">
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="twitter:image" content="https://oath.tech/brand/oath-share-1200x630.png">
+<meta name="twitter:image:alt" content="Oath logo">
+<link rel="icon" href="brand/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="brand/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="brand/site.webmanifest">
+<meta name="theme-color" content="#1B4652">
 <link rel="me" href="https://mastodon.social/@oathtech">
-<style>
-  :root {
-    --ink: #102f28;
-    --muted: #4f6660;
-    --rule: #c9d6d0;
-    --accent: #7a3a14;
-    --bg: #f4f8f5;
-  }
-
-  html { font-size: 17px; }
-
-  body {
-    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
-                 Charter, "Bitstream Charter", Cambria, Georgia, serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    max-width: 38rem;
-    margin: 4rem auto;
-    padding: 0 1.5rem 6rem;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  h1 {
-    font-size: 2.3rem;
-    text-wrap: balance;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0 0 0.6rem;
-    line-height: 1.1;
-  }
-
-  h1 .corner {
-    height: 0.66em;
-    width: auto;
-    color: var(--accent);
-    vertical-align: baseline;
-    position: relative;
-    top: -0.28em;
-  }
-
-  h1 .corner:first-child { margin-right: 0.12em; }
-  h1 .corner:last-child { margin-left: 0.12em; }
-
-  .subtitle {
-    font-style: italic;
-    color: var(--muted);
-    font-size: 1.05rem;
-    margin: 0;
-    text-wrap: balance;
-  }
-
-  h2 {
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    margin: 3.5rem 0 1rem;
-  }
-
-  section:first-of-type h2 { margin-top: 0; }
-
-  p { margin: 0 0 1rem; }
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--muted) 55%, var(--bg));
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-  }
-
-  a:hover {
-    color: var(--accent);
-    text-decoration-color: var(--accent);
-  }
-
-  ul.work {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  ul.work li {
-    margin: 0 0 1.2rem;
-    padding-left: 5.4rem;
-    position: relative;
-  }
-
-  ul.work time {
-    position: absolute;
-    left: 0;
-    top: 0.2em;
-    font-size: 0.8rem;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-
-  ul.work .kind {
-    font-size: 0.68rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--muted);
-    margin-left: 0.2rem;
-  }
-
-  ul.work a { font-weight: 600; }
-
-  ul.work a.amb { font-weight: 400; }
-
-  footer {
-    margin-top: 5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule);
-    font-size: 0.85rem;
-    color: var(--muted);
-    display: grid;
-    grid-template-columns: 5.4rem 1fr;
-    align-items: start;
-    line-height: 1.5;
-  }
-
-  footer .logo {
-    height: 4rem;
-    width: auto;
-  }
-
-  footer .sig {
-    height: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    line-height: 1.2;
-  }
-
-  footer p { margin: 0; }
-
-  footer .imprint { font-size: 0.78rem; }
-
-  @media (max-width: 600px) {
-    html { font-size: 16px; }
-    body { margin: 2rem auto; padding: 0 1.2rem 4rem; }
-    h1 { font-size: 1.8rem; }
-    h2 { margin-top: 2.5rem; }
-    ul.work li { padding-left: 0; }
-    ul.work time { position: static; display: block; margin-bottom: 0.1rem; }
-  }
-</style>
+<link rel="stylesheet" href="site.css">
 </head>
-<body>
+<body class="home">
+
+<h1 class="mast"><img src="oath-logo.svg" alt="Oath Technologies" width="120" height="156"></h1>
+
+<main>
 
 <header>
-  <h1><svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M2 18V2h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Oath Technologies<svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M8 18V2H0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></h1>
-  <p class="subtitle">A Focused Research Organization working on AI oversight via formal methods.</p>
+  <p class="lead">A Focused Research Organization working on AI oversight via formal methods.</p>
 </header>
 
 <section>
   <h2>About</h2>
-  <p>Future AIs will operate at scales and speeds that mean we can&rsquo;t oversee them directly. We need ways to scale human oversight, with trustworthy evidence that rules are obeyed. That is what Oath is building.</p>
-  <p>The hardest part of this problem is specifying what humans want in a way that is understandable and robust to AI deception. The alternative, trusting powerful AIs without understanding what they do, seems unlikely to go well.</p>
-  <p>Our aim is to keep humans safe and in control as we move through these extraordinary times.</p>
+  <p>Oath Technologies is building tools for overseeing advanced AIs. Most of our work is based on the <a href="https://lean-lang.org/">Lean proof assistant</a>.</p>
+  <p>As AIs become more capable, we expect they will become harder for humans to oversee. This is because they will act faster than we can monitor and build bigger than we can comprehend.</p>
+  <p>We think formal verification can help scale human understanding and trust. The hardest part of oversight will be specifying what humans want in a way that is understandable and robust to AI deception.</p>
+  <p>We are particularly interested in using AI to build:</p>
+  <ul>
+    <li>Tools that bridge the gap between other languages and Lean, such as our <a href="https://github.com/OathTech/cerberus-lean">cerberus-lean</a>, <a href="https://github.com/OathTech/golean">golean</a>, and <a href="https://github.com/OathTech/ACL2Lean">ACL2Lean</a>.</li>
+    <li>Models of real-world systems, such as our <a href="https://github.com/OathTech/lean-ux-proto">lean-ux-proto</a> model of selected Linux kernel subsystems.</li>
+    <li>Applications of formal tools to critical systems, such as our work on <a href="pub/2026/11/finding-grid-bugs-for-tens-of-dollars/">finding power-grid bugs for tens of dollars</a>.</li>
+  </ul>
+  <p>Oath is a high-risk research organization trying to push the frontiers of possibility. Our aim is to keep humans safe and in control as we move through these extraordinary times.</p>
 </section>
 
 <section>
   <h2>Hiring</h2>
-  <p>We are hiring a <a href="jobs/#formal-methods">Formal Methods Research Engineer</a> and a <a href="jobs/#chief-of-staff">Chief of Staff</a> in Berkeley. Details and how to apply are on the <a href="jobs/">jobs page</a>.</p>
+  <p>We are hiring <a href="jobs/#formal-methods">Formal Methods Research Engineers</a> and a <a href="jobs/#chief-of-staff">Chief of Staff</a> in Berkeley. Details and how to apply are on the <a href="jobs/">jobs page</a>.</p>
 </section>
 
 <section>
-  <h2>Work</h2>
+  <h2>Writing and talks</h2>
   <ul class="work">
     <li><time datetime="2026-11">Nov 2026</time><div><a href="pub/2026/11/specification-seems-hard/">Specification Seems Hard</a> <span class="kind">[Talk]</span> &mdash; proof got cheap; specification is still hard. Given at <a class="amb" href="https://luma.com/kytl0zlj">Software Verification in Lean: Palo Alto 2026</a>.</div></li>
     <li><time datetime="2026-11">Nov 2026</time><div><a href="pub/2026/11/finding-grid-bugs-for-tens-of-dollars/">Finding Power-Grid Bugs for Tens of Dollars</a> <span class="kind">[Post]</span> &mdash; AI agents turn long-established verification tools into security audits any team can afford. Methodology: <a class="amb" href="https://github.com/OathTech/crit-infra-methodology">crit-infra-methodology</a>.</div></li>
-    <li><time datetime="2026-09">Sep 2026</time><div><a href="https://github.com/OathTech/lean-ux-proto">lean-ux-proto</a> <span class="kind">[Tool]</span> &mdash; a research prototype: an executable Lean&nbsp;4 model of selected Linux subsystems, tested against an instrumented Linux kernel.</div></li>
     <li><time datetime="2026-08">Aug 2026</time><div><a href="pub/2026/08/tentative-advice-building-with-ai/">Tentative Advice on Building with AI</a> <span class="kind">[Talk]</span> &mdash; how do we use AI to build formal tools?</div></li>
-    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/brick-wp">brick-wp</a> <span class="kind">[Tool]</span> &mdash; a tactic library for verifying C++ with <a class="amb" href="https://github.com/SkyLabsAI/BRiCk">BRiCk</a>.</div></li>
-    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/grossmith">grossmith</a> <span class="kind">[Tool]</span> &mdash; a Go program generator for differential testing of Go reimplementations and semantics.</div></li>
-    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/cerberus-lean">cerberus-lean</a> <span class="kind">[Tool]</span> &mdash; a port of the <a class="amb" href="https://www.cl.cam.ac.uk/~pes20/cerberus/">Cerberus</a> C semantics to Lean&nbsp;4, differentially validated against the OCaml implementation.</div></li>
-    <li><time datetime="2026-07">Jul 2026</time><div><a href="https://github.com/OathTech/covmap">covmap</a> <span class="kind">[Tool]</span> &mdash; a tool that keeps specifications connected to the code that implements them.</div></li>
-    <li><time datetime="2026-06">Jun 2026</time><div><a href="https://github.com/OathTech/golean">golean</a> <span class="kind">[Tool]</span> &mdash; an executable Go semantics in Lean&nbsp;4, validated by differential testing.</div></li>
     <li><time datetime="2026-05">May 2026</time><div><a href="pub/2026/05/semantics-done-quick/">Semantics Done Quick</a> <span class="kind">[Proposal]</span> &mdash; a project to lift trusted formal semantics from real-world programming languages, with AI agents doing most of the work. Part of the <a class="amb" href="https://apartresearch.com/fellowships/the-secure-program-synthesis-fellowship">Apart &times; Atlas Secure Program Synthesis Fellowship</a>.</div></li>
-    <li><time datetime="2026-03">Mar 2026</time><div><a href="https://github.com/OathTech/ACL2Lean">ACL2Lean</a> <span class="kind">[Tool]</span> &mdash; a toolchain that replays <a class="amb" href="https://www.cs.utexas.edu/~moore/acl2/">ACL2</a> proofs as kernel-checked Lean&nbsp;4 proofs.</div></li>
-    <li><time datetime="2026-02">Feb 2026</time><div><a href="https://github.com/OathTech/lean-tcb">lean-tcb</a> <span class="kind">[Tool]</span> &mdash; a trusted-computing-base analyzer for Lean&nbsp;4: the definitions you need to review to trust a theorem.</div></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Tools</h2>
+  <p><strong>Disclaimer:</strong> most of our tools are research prototypes. Please do not use them in production unless you know what you are doing.</p>
+  <ul class="work">
+    <li><time datetime="2026-10">Oct 2026</time><div><a href="https://github.com/OathTech/lean-ux-proto">lean-ux-proto</a> &mdash; an executable Lean&nbsp;4 model of selected Linux subsystems, tested against an instrumented Linux kernel.</div></li>
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/brick-wp">brick-wp</a> &mdash; a tactic library for verifying C++ with <a class="amb" href="https://github.com/SkyLabsAI/BRiCk">BRiCk</a>.</div></li>
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/grossmith">grossmith</a> &mdash; a Go program generator for differential testing of Go reimplementations and semantics.</div></li>
+    <li><time datetime="2026-08">Aug 2026</time><div><a href="https://github.com/OathTech/cerberus-lean">cerberus-lean</a> &mdash; a port of the <a class="amb" href="https://www.cl.cam.ac.uk/~pes20/cerberus/">Cerberus</a> C semantics to Lean&nbsp;4, differentially validated against the OCaml implementation.</div></li>
+    <li><time datetime="2026-07">Jul 2026</time><div><a href="https://github.com/OathTech/covmap">covmap</a> &mdash; a tool that keeps specifications connected to the code that implements them.</div></li>
+    <li><time datetime="2026-06">Jun 2026</time><div><a href="https://github.com/OathTech/golean">golean</a> &mdash; an executable Go semantics in Lean&nbsp;4, validated by differential testing.</div></li>
+    <li><time datetime="2026-03">Mar 2026</time><div><a href="https://github.com/OathTech/ACL2Lean">ACL2Lean</a> &mdash; a toolchain that replays <a class="amb" href="https://www.cs.utexas.edu/~moore/acl2/">ACL2</a> proofs as kernel-checked Lean&nbsp;4 proofs.</div></li>
+    <li><time datetime="2026-02">Feb 2026</time><div><a href="https://github.com/OathTech/lean-tcb">lean-tcb</a> &mdash; a trusted-computing-base analyzer for Lean&nbsp;4: the definitions you need to review to trust a theorem.</div></li>
   </ul>
 </section>
 
 <section>
   <h2>Funding</h2>
-  <p>Oath Technologies is a nonprofit, fiscally sponsored by <a href="https://www.convergentresearch.org/">Convergent Research</a>. We are grateful for support from <a href="https://coefficientgiving.org/">Coefficient Giving</a>, <a href="https://halcyonfutures.org/">Halcyon Futures</a>, the <a href="https://hewlett.org/">Hewlett Foundation</a>, and the <a href="https://survivalandflourishing.fund/">Survival and Flourishing Fund</a>.</p>
+  <p>Oath Technologies is a nonprofit Focused Research Organization, fiscally sponsored by <a href="https://www.convergentresearch.org/">Convergent Research</a>. We are grateful for support from <a href="https://coefficientgiving.org/">Coefficient Giving</a>, <a href="https://halcyonfutures.org/">Halcyon Futures</a>, the <a href="https://hewlett.org/">Hewlett Foundation</a>, and the <a href="https://survivalandflourishing.fund/">Survival and Flourishing Fund</a>.</p>
 </section>
 
+</main>
+
 <footer>
-  <img class="logo" src="oath-logo.svg" alt="Oath">
   <div class="sig">
   <p><a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a></p>
   <p>Berkeley, California</p>
-  <p class="imprint">&copy; 2026 Oath Technologies, LLC</p>
+  <p>&copy; 2026 Oath Technologies, LLC</p>
   </div>
 </footer>
 

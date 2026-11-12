@@ -1,0 +1,366 @@
+/* Oath Technologies — site stylesheet.
+ *
+ * One file for every page. Each page declares its type on <body>:
+ *   home      the front page
+ *   article   posts and proposals (long-form text)
+ *   talk      a slide deck with notes and links
+ *   plain     everything else (Jobs, 404)
+ *
+ * Page skeleton, the same everywhere:
+ *   <body class="TYPE">
+ *     <p class="mast"><a href="/"><img src="/oath-logo.svg" ...></a></p>   (h1, no link, on home)
+ *     <main> <header>…</header> … </main>
+ *     <footer>…</footer>
+ *
+ * Layouts: phone (up to 600px), tablet (601px up to 60rem), desktop (60rem and up).
+ * On desktop the petrol plate is fixed on the left with the logo at its foot;
+ * below that it is a petrol block across the top of the page.
+ */
+
+/* ---------- Tokens ---------- */
+
+:root {
+  /* Brand palette (oath-branding/guide/palette.json) */
+  --petrol: #1B4652;
+  --mineral: #F0F4F5;
+  --slate: #49636E;
+  --copper: #A04C38;
+
+  /* Roles */
+  --ink: var(--petrol);
+  --bg: var(--mineral);
+  --muted: var(--slate);
+  --accent: var(--copper);
+  --rule: #C6D4D9;
+  --tint: rgba(0, 0, 0, 0.04);      /* code and pre background */
+
+  /* Measures */
+  --measure: 38rem;                 /* the text column */
+  --dates: 5.4rem;                  /* hanging date column in lists */
+
+  /* Type scale */
+  --small: 0.85rem;
+  --tag: 0.7rem;
+  --lead: 1.3rem;
+
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
+           Charter, "Bitstream Charter", Cambria, Georgia, serif;
+  --mono: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+
+  /* Page gutter and logo size, per layout */
+  --gutter: 1.5rem;
+  --logo: 120px;
+}
+
+/* ---------- Base ---------- */
+
+html {
+  font-size: 17px;
+  overflow-x: hidden;               /* fallback for browsers without clip */
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--serif);
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.65;
+  max-width: var(--measure);
+  margin: 0 auto 4rem;
+  padding: 0 var(--gutter) 6rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+p { margin: 0 0 1rem; }
+p, li { text-wrap: pretty; }
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--muted) 55%, var(--bg));
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+a:hover { color: var(--accent); text-decoration-color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 1px; }
+
+/* Browsers blend an opaque selection colour with the page, which shifts its
+   tone; a just-below-opaque colour is drawn as given. Same colour as --petrol. */
+::selection { background: rgb(27 70 82 / 0.99); color: var(--mineral); }
+
+/* ---------- Plate and logo ---------- */
+
+/* Tablet and phone: a petrol block across the full window width, with the
+   logo on the text column's left edge. Desktop overrides this below. */
+.mast {
+  margin: 0 calc(50% - 50vw) 2.5rem;
+  padding: 2.5rem calc(50vw - 50%);
+  background: var(--petrol);
+  line-height: 0;
+  font-size: 1rem;
+  position: relative;               /* anchors ::before and ::after */
+}
+/* The petrol carries on past the edge of the page, so pulling the page down
+   (trackpad or touch overscroll) never shows a flat edge above the plate. */
+.mast::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 100vh;
+  background: inherit;
+}
+.mast a { display: inline-block; }
+.mast a:focus-visible { outline-color: var(--mineral); outline-offset: 6px; }
+.mast img { display: block; width: var(--logo); height: auto; }
+
+/* ---------- Page header ---------- */
+
+header { margin-bottom: 2.5rem; }
+.home header { margin-bottom: 3.5rem; }
+
+h1 {
+  font-size: 2.3rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  margin: 0 0 0.6rem;
+  text-wrap: balance;
+}
+
+/* The front page's opening line. */
+.lead { font-size: var(--lead); line-height: 1.4; margin: 0; text-wrap: balance; }
+
+.subtitle {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin: 0;
+  text-wrap: balance;
+}
+.article .subtitle, .talk .subtitle { margin-bottom: 1.8rem; }
+
+.byline { color: var(--muted); margin: 0; }
+.article .byline { margin-bottom: 1.5rem; }
+
+/* ---------- Headings ---------- */
+
+h2 {
+  font-size: var(--small);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin: 3.5rem 0 1rem;
+}
+.home section:first-of-type h2,
+.plain section:first-of-type h2 { margin-top: 0; }
+
+/* Talk pages use a plain heading for their one list of links. */
+.talk h2 {
+  font-size: 1.1rem;
+  text-transform: none;
+  letter-spacing: normal;
+  color: inherit;
+  margin: 2.5rem 0 0.6rem;
+}
+
+h3 { font-size: 1rem; font-weight: 600; margin: 1.8rem 0 0.4rem; }
+
+/* ---------- Lists ---------- */
+
+ul, ol { margin: 0.5rem 0 1rem; padding-left: 1.4rem; }
+li { margin-bottom: 0.5rem; }
+
+/* Entry lists: the work on the front page (dated) and the roles on Jobs. */
+ul.work, ul.roles { list-style: none; margin: 0; padding: 0; }
+ul.work li, ul.roles li { margin: 0 0 1rem; }
+ul.work a, ul.roles a { font-weight: 600; }
+ul.work a.amb { font-weight: 400; }
+
+ul.work li { padding-left: var(--dates); position: relative; }
+ul.work time {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  font-size: var(--small);
+  line-height: 1.65rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Bracketed tags after a title: [TALK], [FULL TIME · BERKELEY]. */
+.kind {
+  font-size: var(--tag);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-left: 0.2rem;
+  white-space: nowrap;
+}
+
+ul.links { margin: 0; padding-left: 1.2rem; }
+ul.links li { margin-bottom: 0.3rem; }
+
+/* ---------- Article furniture ---------- */
+
+code {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  background: var(--tint);
+  padding: 0.1em 0.35em;
+  border-radius: 2px;
+}
+
+pre {
+  background: var(--tint);
+  padding: 0.8rem 1rem;
+  margin: 0 0 1rem;
+  border-radius: 2px;
+  overflow-x: auto;                 /* long lines scroll; blocks stay as wide as the text */
+  line-height: 1.45;
+}
+pre code { background: none; padding: 0; font-size: 0.8rem; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.5rem 0 1.5rem;
+  font-size: 0.93rem;
+  font-variant-numeric: tabular-nums;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.35rem 0.75rem 0.35rem 0;
+  border-bottom: 1px solid var(--rule);
+}
+th { font-weight: 600; border-bottom-color: var(--muted); }
+td:last-child { white-space: nowrap; }
+
+.milestone { margin: 1.4rem 0 1.6rem; padding-left: 1rem; border-left: 2px solid var(--rule); }
+.milestone .date {
+  font-size: var(--small);
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+.milestone h3 { margin-top: 0.2rem; margin-bottom: 0.5rem; }
+.milestone .deliverables { font-size: 0.93rem; color: var(--muted); }
+.milestone .deliverables strong { color: var(--ink); font-weight: 600; }
+
+/* Embedded slide deck (PDF). */
+.deck { width: 100%; aspect-ratio: 16 / 9; background: #fff; margin: 0 0 1rem; }
+
+/* ---------- Footer ---------- */
+
+footer {
+  margin-top: 3.5rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--rule);
+  font-size: var(--small);
+  color: var(--muted);
+}
+footer .sig { display: flex; flex-direction: column; gap: 0.35rem; line-height: 1.2; }
+footer p { margin: 0; }
+
+/* ---------- Phone ---------- */
+
+@media (max-width: 600px) {
+  :root { --gutter: 1.2rem; --logo: 88px; --lead: 1.25rem; }
+
+  html { font-size: 16px; }
+  body { margin-bottom: 2rem; padding-bottom: 4rem; }
+
+  .mast { margin-bottom: 1.75rem; padding-top: 1.25rem; padding-bottom: 1.35rem; }
+
+  h1 { font-size: 1.8rem; }
+  h2 { margin-top: 2.5rem; }
+
+  ul.work li { padding-left: 0; }
+  ul.work time { position: static; display: block; margin-bottom: 0.1rem; }
+
+  .deck { display: none; }
+}
+
+/* ---------- Desktop ---------- */
+
+@media (min-width: 60rem) {
+  :root {
+    /* The plate narrows a little on small laptops. */
+    --plate: clamp(13.5rem, 21vw, 16rem);
+    /* Space between plate and text: grows with the window, so the column
+       drifts toward the middle instead of hugging the plate. */
+    --gap: clamp(4rem, calc((100vw - var(--plate) - var(--measure)) * 0.3), 13rem);
+    --top: 5rem;
+    /* Distance from the window's bottom edge to the baseline of the logo's
+       lettering and, at the end of the page, the last footer line. */
+    --foot: 4.23rem;
+  }
+
+  /* The page is at least one window tall, so on short pages the footer sits
+     at the bottom, level with the logo, as it does at the end of long pages. */
+  body {
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - var(--top) - var(--foot));
+    margin: 0 0 0 var(--plate);
+    padding: var(--top) 3rem var(--foot) var(--gap);
+  }
+  main { flex: 1 0 auto; }
+
+  .mast {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    width: var(--plate);
+    margin: 0;
+    padding: 0 0 min(4.5rem, 12vh);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  /* On desktop the plate also carries on below the window. */
+  .mast::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    height: 100vh;
+    background: inherit;
+  }
+
+  /* Every page but the front page has a rule under its title block. */
+  body:not(.home) header { padding-bottom: 2rem; border-bottom: 1px solid var(--rule); }
+
+  footer { margin-top: 2.5rem; }
+}
+
+/* ---------- Print ---------- */
+
+/* On paper the plate becomes a letterhead: the logo, in black, at the top of
+   the first page. (The logo file is light-coloured, for the petrol plate, so
+   it is darkened here; browsers do not print backgrounds by default.) */
+@media print {
+  html { background: #fff; }
+  body { display: block; min-height: 0; margin: 0; padding: 0; max-width: none; background: none; }
+  .mast {
+    position: static;
+    display: block;
+    width: auto;
+    margin: 0 0 2rem;
+    padding: 0;
+    background: none;
+  }
+  .mast::before, .mast::after { display: none; }
+  .mast img { width: 90px; filter: brightness(0); }
+  h1, h2, h3 { break-after: avoid; }  /* no heading stranded at the foot of a page */
+}

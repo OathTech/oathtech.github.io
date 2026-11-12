@@ -4,222 +4,35 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<meta name="theme-color" content="#f4f8f5">
 <title>Finding Power-Grid Bugs for Tens of Dollars — Oath Technologies</title>
 <meta name="description" content="AI agents turn long-established verification tools into security audits any team can afford.">
 <meta property="og:title" content="Finding Power-Grid Bugs for Tens of Dollars">
 <meta property="og:description" content="AI agents turn long-established verification tools into security audits any team can afford.">
 <meta property="og:url" content="https://oath.tech/pub/2026/11/finding-grid-bugs-for-tens-of-dollars/">
 <meta property="og:type" content="article">
-<meta property="og:image" content="https://oath.tech/og.png">
+<meta property="og:image" content="https://oath.tech/brand/oath-share-1200x630.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:type" content="image/png">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:site_name" content="Oath Technologies">
-<meta property="og:image:alt" content="Oath Technologies">
+<meta property="og:image:alt" content="Oath logo">
 <meta name="twitter:title" content="Finding Power-Grid Bugs for Tens of Dollars">
 <meta name="twitter:description" content="AI agents turn long-established verification tools into security audits any team can afford.">
-<meta name="twitter:image" content="https://oath.tech/og.png">
-<link rel="icon" type="image/svg+xml" href="../../../../favicon.svg">
-<style>
-  :root {
-    --ink: #102f28;
-    --muted: #4f6660;
-    --rule: #c9d6d0;
-    --accent: #7a3a14;
-    --bg: #f4f8f5;
-  }
-
-  html { font-size: 17px; }
-
-  body {
-    font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Sitka Text",
-                 Charter, "Bitstream Charter", Cambria, Georgia, serif;
-    color: var(--ink);
-    background: var(--bg);
-    line-height: 1.65;
-    max-width: 38rem;
-    margin: 4rem auto;
-    padding: 0 1.5rem 6rem;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    hyphens: auto;
-  }
-
-  .home {
-    font-size: 0.85rem;
-    color: var(--muted);
-    margin: 0 0 2rem;
-  }
-
-  .home a { color: var(--muted); text-decoration: none; }
-  .home a:hover { color: var(--accent); }
-
-  .home .corner {
-    height: 0.7em;
-    width: auto;
-    color: var(--accent);
-    vertical-align: baseline;
-    position: relative;
-    top: -0.18em;
-  }
-
-  .home .corner:first-child { margin-right: 0.1em; }
-  .home .corner:last-child { margin-left: 0.1em; }
-
-  header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  h1 {
-    font-size: 2.3rem;
-    text-wrap: balance;
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    margin: 0 0 0.6rem;
-    line-height: 1.1;
-  }
-
-  .subtitle {
-    font-style: italic;
-    color: var(--muted);
-    font-size: 1.05rem;
-    margin: 0 0 1.8rem;
-    text-wrap: balance;
-  }
-
-  .byline {
-    font-size: 0.95rem;
-    color: var(--muted);
-    margin: 0 0 1.5rem;
-  }
-
-
-  h2 {
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--accent);
-    margin: 3.5rem 0 1rem;
-  }
-
-  h3 {
-    font-size: 1.02rem;
-    font-weight: 600;
-    margin: 1.8rem 0 0.4rem;
-  }
-
-  p { margin: 0 0 1rem; }
-
-  a {
-    color: inherit;
-    text-decoration: underline;
-    text-decoration-color: color-mix(in srgb, var(--muted) 55%, var(--bg));
-    text-decoration-thickness: 1px;
-    text-underline-offset: 2px;
-  }
-
-  a:hover {
-    color: var(--accent);
-    text-decoration-color: var(--accent);
-  }
-
-  ul, ol {
-    margin: 0.5rem 0 1rem;
-    padding-left: 1.4rem;
-  }
-
-  li { margin-bottom: 0.5rem; }
-
-  code {
-    font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
-    font-size: 0.85em;
-    background: rgba(0,0,0,0.04);
-    padding: 0.1em 0.35em;
-    border-radius: 2px;
-  }
-
-
-  pre {
-    background: rgba(0,0,0,0.04);
-    padding: 0.8rem 1rem;
-    margin: 0 0 1rem;
-    border-radius: 2px;
-    overflow-x: auto;
-    line-height: 1.45;
-    hyphens: none;
-  }
-
-  pre code {
-    background: none;
-    padding: 0;
-    font-size: 0.8rem;
-  }
-
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 0.5rem 0 1.5rem;
-    font-size: 0.93rem;
-    font-variant-numeric: tabular-nums;
-    hyphens: none;
-  }
-
-  th, td {
-    text-align: left;
-    vertical-align: top;
-    padding: 0.35rem 0.75rem 0.35rem 0;
-    border-bottom: 1px solid var(--rule);
-  }
-
-  th {
-    font-weight: 600;
-    border-bottom-color: var(--muted);
-  }
-
-  footer {
-    margin-top: 5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--rule);
-    font-size: 0.85rem;
-    color: var(--muted);
-    display: grid;
-    grid-template-columns: 5.4rem 1fr;
-    align-items: start;
-    line-height: 1.5;
-  }
-
-  footer .logo {
-    height: 4rem;
-    width: auto;
-  }
-
-  footer .sig {
-    height: 4rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    line-height: 1.2;
-  }
-
-  footer p { margin: 0; }
-
-  footer .imprint { font-size: 0.78rem; }
-
-  @media (max-width: 600px) {
-    html { font-size: 16px; }
-    body { margin: 2rem auto; padding: 0 1.2rem 4rem; }
-    h1 { font-size: 1.8rem; }
-    h2 { margin-top: 2.5rem; }
-  }
-</style>
+<meta name="twitter:image" content="https://oath.tech/brand/oath-share-1200x630.png">
+<meta name="twitter:image:alt" content="Oath logo">
+<link rel="icon" href="../../../../brand/favicon.ico" sizes="16x16 32x32 48x48">
+<link rel="icon" href="../../../../brand/favicon.svg" type="image/svg+xml" sizes="any">
+<link rel="apple-touch-icon" href="../../../../brand/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="../../../../brand/site.webmanifest">
+<meta name="theme-color" content="#1B4652">
+<link rel="stylesheet" href="../../../../site.css">
 </head>
-<body>
+<body class="article">
 
-<p class="home"><a href="../../../../"><svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M2 18V2h8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>Oath Technologies<svg class="corner" viewBox="0 0 10 20" aria-hidden="true"><path d="M8 18V2H0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+<p class="mast"><a href="../../../../"><img src="../../../../oath-logo.svg" alt="Oath Technologies home" width="120" height="156"></a></p>
+
+<main>
 
 <header>
   <h1>Finding Power-Grid Bugs for Tens of Dollars</h1>
@@ -228,7 +41,7 @@
 </header>
 
 <p>The public conversation about AI and vulnerability discovery has settled on a story: finding real
-security bugs takes a frontier model, a purpose-built scaffold, and a large compute budget. For example, Anthropic's Claude Mythos Preview found a 27-year-old flaw in OpenBSD's TCP stack,
+security bugs takes a frontier model, a purpose-built scaffold, and a large compute budget. For example, Anthropic’s Claude Mythos Preview found a 27-year-old flaw in OpenBSD’s TCP stack,
 but only after
 <a href="https://www.sovereignmagazine.com/article/claude-mythos-27-year-bug-cost">roughly 1,000 runs costing just under $20,000</a>.
 The same effort, Project Glasswing, has since
@@ -246,7 +59,7 @@ effort found hundreds of bugs.</p>
 
 <section>
 <h2>What we audited</h2>
-<p>The software that runs the power grid has become a direct target for malicious behavior. The <a href="https://www.welivesecurity.com/2017/06/12/industroyer-biggest-threat-industrial-control-systems-since-stuxnet/">Industroyer malware</a> that blacked out part of Kyiv in 2016 spoke the grid's own protocols to operate substation breakers directly, and a <a href="https://www.welivesecurity.com/2022/04/12/industroyer2-industroyer-reloaded/">second variant</a> was turned on Ukraine's grid again in 2022. More recently, U.S. and allied agencies have <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a">warned</a> that state-backed groups are quietly pre-positioning inside power, water, and communications networks rather than simply spying on them. Much of the code that actually parses these protocols is open source, written in C, and maintained by small teams, exactly the kind of software we set out to examine.</p>
+<p>The software that runs the power grid has become a direct target for malicious behavior. The <a href="https://www.welivesecurity.com/2017/06/12/industroyer-biggest-threat-industrial-control-systems-since-stuxnet/">Industroyer malware</a> that blacked out part of Kyiv in 2016 spoke the grid’s own protocols to operate substation breakers directly, and a <a href="https://www.welivesecurity.com/2022/04/12/industroyer2-industroyer-reloaded/">second variant</a> was turned on Ukraine’s grid again in 2022. More recently, U.S. and allied agencies have <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-038a">warned</a> that state-backed groups are quietly pre-positioning inside power, water, and communications networks rather than simply spying on them. Much of the code that actually parses these protocols is open source, written in C, and maintained by small teams, exactly the kind of software we set out to examine.</p>
 <p>We audited ten open-source protocol stacks that run inside power-grid substations, RTUs, PLCs, smart meters,
 EV chargers, and grid-facing industrial servers. Between them they cover SCADA telemetry and
 control, substation automation, industrial machine-to-machine messaging, utility meter reading,
@@ -329,11 +142,12 @@ integer-overflow bug that the review had declared absent. The review had searche
 literal patterns, such as <code>&lt;&lt; 24</code>, but the real code shifted by an amount computed at runtime.
 Here is a generic illustration of the class:</p>
 <pre><code class="language-c">for (i = 0; i &lt; n; i++)
-    value |= buf[i] &lt;&lt; (8 * i);   /* int promotion: at i == 3, a byte &gt;= 0x80 overflows */
+    /* int promotion: at i == 3, a byte &gt;= 0x80 overflows */
+    value |= buf[i] &lt;&lt; (8 * i);
 </code></pre>
 <p>No search for a literal pattern finds that line, but a fuzzer running under UBSan finds it
 quickly.</p>
-<p>A fuzz harness is usually a few lines. The agent's real work is building the library so that
+<p>A fuzz harness is usually a few lines. The agent’s real work is building the library so that
 the fuzzer can actually see inside it (see the lessons below):</p>
 <pre><code class="language-c">int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
     decode_message(data, size);
@@ -342,16 +156,19 @@ the fuzzer can actually see inside it (see the lessons below):</p>
 </code></pre>
 <p>Here is a typical find. UBSan flagged it about five seconds into a one-minute smoke run, on a
 4-byte input:</p>
-<pre><code class="language-c">int32_t v = (buf[0] &amp; 0x80) ? -1 : 0;   /* sign-extend a negative value */
+<pre><code class="language-c">/* sign-extend a negative value */
+int32_t v = (buf[0] &amp; 0x80) ? -1 : 0;
 for (i = 0; i &lt; len; i++)
-    v = (v &lt;&lt; 8) | buf[i];             /* UB: left-shifting a negative value */
+    /* UB: left-shifting a negative value */
+    v = (v &lt;&lt; 8) | buf[i];
 </code></pre>
-<p>The fix is to accumulate in a <code>uint32_t</code> and convert once at the end. On today's compilers this
+<p>The fix is to accumulate in a <code>uint32_t</code> and convert once at the end. On today’s compilers this
 usually does what the author intended, which is why it can survive for years. But a compiler is still
 allowed to miscompile it, and in a build that traps on overflow, it becomes a crash. Other fuzzing
 finds in the same audits included a memory leak on a parse-error path, unbounded recursion on
 deeply nested input, and a read past the end of a buffer in a shared bit-reader:</p>
-<pre><code class="language-c">bit = (data[byte_pos] &gt;&gt; bit_pos) &amp; 1;   /* never checks byte_pos &lt; len */
+<pre><code class="language-c">/* never checks byte_pos &lt; len */
+bit = (data[byte_pos] &gt;&gt; bit_pos) &amp; 1;
 </code></pre>
 <p><strong>Bounded model checking with <a href="https://github.com/esbmc/esbmc">ESBMC</a>.</strong> A fuzzer samples inputs,
 while a model checker reasons about <em>all</em> inputs up to a bound. Given a small harness around a
@@ -365,7 +182,7 @@ found a second, independent defect that fuzzing never reached.</p>
 one ESBMC found:</p>
 <pre><code class="language-c">bool negative = buf[0] &amp; 0x80;   /* reads buf[0] even when len == 0 */
 </code></pre>
-<p>The harness says "any length from 0 to 9, any contents" and lets the checker do the rest:</p>
+<p>The harness says “any length from 0 to 9, any contents” and lets the checker do the rest:</p>
 <pre><code class="language-c">size_t len = nondet_size();
 __ESBMC_assume(len &lt;= 9);
 uint8_t *buf = malloc(len);      /* contents are unconstrained */
@@ -378,13 +195,13 @@ decode_int(buf, len);
 After a one-line guard, the same harness reports <code>VERIFICATION SUCCESSFUL</code>. That is a proof for
 every size up to 9 and every possible byte value, not a sample of them. In the same audit, ESBMC
 also found an unchecked <code>malloc()</code> result, because it explores allocation failure by default and
-most fuzzers don't. Other ESBMC finds included a reachable <code>assert(0)</code> and a silent unsigned
+most fuzzers don’t. Other ESBMC finds included a reachable <code>assert(0)</code> and a silent unsigned
 wraparound in an integer decoder.</p>
 <p>Proofs also make good regression tests. Where a bug is confirmed but not yet fixed upstream, we
 check in an ESBMC proof that is <em>expected to fail</em>. It becomes a trip-wire that flips to passing on
 the day the fix lands.</p>
 <p><strong>Protocol modeling with <a href="https://lamport.azurewebsites.net/tla/tla.html">TLA+</a>.</strong> Some of the most
-important grid-protocol bugs aren't memory errors. They are logic errors in state that persists
+important grid-protocol bugs aren’t memory errors. They are logic errors in state that persists
 across messages: sequence numbers, acknowledgment windows, counters that wrap around, and the
 accept/reject decisions made from them. Nothing crashes when a stale or replayed message is
 wrongly accepted, so fuzzing can never see these bugs. We wrote small TLA+ models of how a
@@ -393,14 +210,18 @@ receiver should track that state and let the TLC model checker explore every rea
 Here is the check, simplified. It has since been fixed upstream, and it had already been reported
 publicly by another researcher:</p>
 <pre><code class="language-c">if (state == last_state &amp;&amp; seq &lt;= last_seq)
-    return REJECT;   /* the only case that is ever rejected */
-return ACCEPT;       /* any other state number, with any sequence number */
+    return REJECT;  /* the only case that is ever rejected */
+/* any other state number, with any sequence number */
+return ACCEPT;
 </code></pre>
-<p>The protocol's rule fits in three lines of TLA+:</p>
+<p>The protocol’s rule fits in three lines of TLA+:</p>
 <pre><code class="language-tla">Valid(st, sq) ==
-    \/ (st = lastState /\ sq &gt; lastSeq)          \* same state: sequence must advance
-    \/ (st &gt; lastState /\ sq = 0)                \* new state: sequence restarts at 0
-    \/ (lastState = Max /\ st = 0 /\ sq = 0)     \* the one legal wraparound
+    \* same state: sequence must advance
+    \/ (st = lastState /\ sq &gt; lastSeq)
+    \* new state: sequence restarts at 0
+    \/ (st &gt; lastState /\ sq = 0)
+    \* the one legal wraparound
+    \/ (lastState = Max /\ st = 0 /\ sq = 0)
 </code></pre>
 <p>The bridge fed both the model and the real C function the same transitions. They disagreed on 87
 of 144. The suspicion turned out to be too narrow: besides accepting a new state without a
@@ -411,8 +232,8 @@ That is a positive result worth as much as a finding.</p>
 <p>The key to TLA+ is a bridge: a separate harness that runs the real C function against the
 model, transcribed independently from the source. Twice, a model passed every one of its own
 checks while silently disagreeing with the code it described, and only the bridge caught it. We
-use TLA+ selectively, only when a protocol meets a short list of entry criteria. When it doesn't,
-we write down a "not modeled, and here's why" decision.</p>
+use TLA+ selectively, only when a protocol meets a short list of entry criteria. When it doesn’t,
+we write down a “not modeled, and here’s why” decision.</p>
 <p>None of these tools is new. ESBMC, TLA+, and libFuzzer have each been mature for years. What kept
 them out of most engineering teams was expertise and labor:
 building the target with the right instrumentation, writing harnesses, stubbing out hardware,
@@ -424,16 +245,16 @@ used, and the agent extended the checker rather than giving up on the target.</p
 found a bug, a fuzzer or model checker gives you something you can check without trusting the
 model: an input that crashes a sanitizer-instrumented build, or a counterexample you can replay.
 When an agent says a piece of code is safe, ESBMC either reports <code>VERIFICATION SUCCESSFUL</code> or it
-doesn't. A language model can invent a plausible-sounding bug, but it cannot make AddressSanitizer
+doesn’t. A language model can invent a plausible-sounding bug, but it cannot make AddressSanitizer
 fire on code that has no bug.</p>
-<p>The risk doesn't vanish. It moves to the setup, where it is easier to check. An agent can write a
+<p>The risk doesn’t vanish. It moves to the setup, where it is easier to check. An agent can write a
 harness that feeds the library inputs no real caller could produce, and in three of our first
 seven audits an apparent crash turned out to be exactly that. A TLA+ model can describe the
 protocol wrongly, and an ESBMC harness can assume away the very inputs that would trigger a bug.
 The gates in our methodology exist to catch these: a check that the production caller can really
 produce the crashing input, the bridge between each TLA+ model and the real code, and a check that
-the fuzzer is actually instrumented. Each turns "do you believe the agent?" into "does this check
-pass?"</p>
+the fuzzer is actually instrumented. Each turns “do you believe the agent?” into “does this check
+pass?”</p>
 <h3>Limitations</h3>
 <p>None of this is full formal verification, and none of it is exhaustive. We have not proven any
 library functionally correct, meaning that it does what its protocol specification says it
@@ -472,11 +293,11 @@ are laborious rather than deep:</p>
 <li><strong>Writing the disclosure.</strong> Each package includes a concrete, deterministic trigger, a root-cause
   analysis, a patch tested against that trigger, an honest statement of impact (including when
   it depends on build configuration), and an explicit note that AI assistance was used. Agents
-  also find the right channel. For one project with no security policy, the agent recovered the maintainer's private address from the project's own commit
+  also find the right channel. For one project with no security policy, the agent recovered the maintainer’s private address from the project’s own commit
   history.</li>
 </ul>
-<p>More than half of our findings came from agents reading code, but never open-ended "find bugs"
-reading. Each pass started from a specific question. Does this published CVE's fix cover every
+<p>More than half of our findings came from agents reading code, but never open-ended “find bugs”
+reading. Each pass started from a specific question. Does this published CVE’s fix cover every
 caller? Are there more instances of the bug the fuzzer just found? Do these two functions agree
 on their limits? That last question found a heap overflow, now
 fixed upstream:</p>
@@ -491,19 +312,19 @@ is one character, <code>65535</code> → <code>65536</code>. We found it by read
 checks the bytes written never exceed the bytes allocated would have found it too, and would now
 prove the fix.</p>
 <h3>Why reading code found more than the tools</h3>
-<p>We didn't expect review to find more defects than the tools, and we have no controlled experiment
+<p>We didn’t expect review to find more defects than the tools, and we have no controlled experiment
 that explains it. Looking back at where each finding came from, we suspect three reasons.</p>
 <p><strong>The count flatters review.</strong> Much of the review started from a tool or from a published
 advisory. In one project, a fuzzer found a signed-arithmetic bug, and an agent then found four
 more bugs of the same family by sweeping the code. The fuzzer gets credit for one and review for
 four. Several other review finds began with the text of a published CVE.</p>
-<p><strong>Review reaches code the tools didn't.</strong> A fuzzer only exercises what its harness feeds it, for
+<p><strong>Review reaches code the tools didn’t.</strong> A fuzzer only exercises what its harness feeds it, for
 as long as the campaign runs. Our ESBMC harnesses covered a few functions at small bounds. Review
 found bugs in a network layer outside the parser we fuzzed, and in a code path compiled only under
 one build configuration. It found one in an authentication branch reached only in the middle of a
-session, and others in a decoder the fuzzer couldn't get past an earlier crash to reach. Review
+session, and others in a decoder the fuzzer couldn’t get past an earlier crash to reach. Review
 also covers code that is unreachable today, which no dynamic tool will ever run.</p>
-<p><strong>Some bugs don't crash.</strong> Sanitizers flag memory errors and undefined behavior. They have nothing
+<p><strong>Some bugs don’t crash.</strong> Sanitizers flag memory errors and undefined behavior. They have nothing
 to say about an operator-precedence mistake that sets the wrong bits, or a missing anti-replay
 check. TLA+ can catch some logic errors like these, but only where someone has built a model.</p>
 <p>None of this weakens the case for cheap AI. The same mid-tier model did the reviewing, and it found real bugs, including the worst one in the series. The
@@ -603,9 +424,9 @@ For comparison, the frontier-model campaign cited above cost just under $20,000.
 ten-project series, orchestration included, cost about a twentieth of that. It is also orders of
 magnitude below a traditional manual audit.</p>
 <h3>Where the money actually went, and how to do it for $10–$20</h3>
-<p>More than half of the total isn't the audits. It's the orchestrating session: one long conversation
+<p>More than half of the total isn’t the audits. It’s the orchestrating session: one long conversation
 that planned the second wave, supervised the agents, and prepared and re-verified every
-disclosure. That work was real, but its price wasn't: 97% of that session's tokens were the
+disclosure. That work was real, but its price wasn’t: 97% of that session’s tokens were the
 model re-reading its own ever-growing conversation history, and it ran on a model about two
 and a half times the price of the audit agents. Across everything we spent, about 72% went to re-reading
 context. Very little of the bill was the model actually thinking. That means most of it can be cut:</p>
@@ -619,7 +440,7 @@ context. Very little of the bill was the model actually thinking. That means mos
 <li><strong>Keep the model out of the waiting.</strong> A 30-minute fuzzing campaign needs no model watching it.
    A shell script waits, and the agent resumes when the campaign exits with a result.</li>
 <li><strong>Use a smaller model for mechanical phases.</strong> Builds, harness boilerplate, re-running gates, and
-   refreshing documents don't need a strong model. Claude Haiku 4.5 costs half as much as Sonnet 5
+   refreshing documents don’t need a strong model. Claude Haiku 4.5 costs half as much as Sonnet 5
    per token. Save the stronger model for triage and disclosure judgment.</li>
 </ol>
 <p>Applied together, we estimate that a full audit of one library costs $10–$20.</p>
@@ -627,19 +448,19 @@ context. Very little of the bill was the model actually thinking. That means mos
 
 <section>
 <h2>The methodology, open to everyone</h2>
-<p>We're releasing <a href="https://github.com/OathTech/crit-infra-methodology">the methodology we used</a> so that others can run these audits themselves. The
+<p>We’re releasing <a href="https://github.com/OathTech/crit-infra-methodology">the methodology we used</a> so that others can run these audits themselves. The
 repository contains:</p>
 <ul>
 <li><strong>An agent contract.</strong> This phase-by-phase playbook takes an agent from cloning a library to a
   disclosure package. It defines an exit gate for each phase and a time budget for each step, and
-  includes a "kill gate" that rejects a weak target in 90 minutes instead of three days. It names
+  includes a “kill gate” that rejects a weak target in 90 minutes instead of three days. It names
   no project and no finding. It contains only the method and the traps above, each with the
   command that catches it.</li>
 <li><strong>Standing instructions.</strong> Your coding agent loads these automatically. They include the
   read-only-to-the-outside-world rule and permission settings that enforce it, so an agent can
   prepare a disclosure but cannot send one.</li>
 <li><strong>Build and verification templates.</strong> These include a sanitizer-and-coverage build script for
-  fuzzing and an ESBMC driver that runs a library's harnesses in tiers.</li>
+  fuzzing and an ESBMC driver that runs a library’s harnesses in tiers.</li>
 <li><strong>Orchestration scripts.</strong> These let several audits share one ordinary machine without starving
   each other of CPU or memory.</li>
 </ul>
@@ -654,7 +475,7 @@ flags that upload data. Reading — fetching sources, cloning repositories, sear
 allowed. The agent assembles a disclosure package on disk, but sending it is always a human step.
 All of this is short and checked in, so you can read exactly what the agent may and may not do
 before you run it.</p>
-<p>The aim is that a utility engineer, a grid operator's software team, or a vendor's own developers
+<p>The aim is that a utility engineer, a grid operator’s software team, or a vendor’s own developers
 can run a credible audit of the protocol libraries they depend on, without expertise in
 security research or formal methods. The agent sets up the fuzzer, writes the model-checking
 harness, and drafts the TLA+ model. You review the findings and decide what to report.</p>
@@ -668,17 +489,18 @@ runs critical infrastructure. Fuzzers, bounded model checkers, and specification
 been powerful for years. Agents have now made them nearly push-button to use. Ten audits of grid
 protocol stacks produced 29 confirmed defects for about $500 of audit work. Better session
 hygiene could cut most of that bill again.</p>
-<p>You don't need to wait for access to the most capable model to find and fix these bugs, and
+<p>You don’t need to wait for access to the most capable model to find and fix these bugs, and
 neither do the people who depend on this software.</p>
 <p><em>AI disclosure: AI assisted in writing this post and the work described within it.</em></p>
 </section>
 
+</main>
+
 <footer>
-  <img class="logo" src="../../../../oath-logo.svg" alt="Oath">
   <div class="sig">
   <p><a href="mailto:contact@oath.tech">contact@oath.tech</a> &middot; <a href="https://github.com/OathTech">github.com/OathTech</a></p>
   <p>Berkeley, California</p>
-  <p class="imprint">&copy; 2026 Oath Technologies, LLC</p>
+  <p>&copy; 2026 Oath Technologies, LLC</p>
   </div>
 </footer>
 
